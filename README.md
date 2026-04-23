@@ -1,5 +1,5 @@
 ## General 
-Dies ist der GitHub Repo für unser LLM-Proxy-Klasse Projekt in OOP2. Das Repository ist [hier]() abrufbar. Ziel war es ein Translator Tool zu erstellen welches...
+Dies ist der GitHub Repo für unser LLM-Proxy-Klasse Projekt in OOP2. Das Repository ist [hier](https://github.com/sofia1738/Translator_P1_LLM_Proxy) abrufbar. Ziel war es ein Translator Tool zu erstellen welches...
 
 -(Idee)Eigene Java-Klasse kapselt Zugriff auf
 ein LLM (z.B. OpenAI API). Die
