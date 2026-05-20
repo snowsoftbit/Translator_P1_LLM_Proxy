@@ -19,24 +19,41 @@ Datenbank gespeichert.
 
 ## Root Folder
 
-src/main/java/
-├── app/
-│   └── Main.java
-├── model/
-│   ├── ChatEntry.java
-│   ├── TranslationRequest.java
-│   └── TranslationResponse.java
-├── persistence/
-│   ├── ChatHistoryDAO.java
-│   └── FileChatHistoryDAO.java
-├── service/
-│   ├── LLMProxy.java
-│   └── TranslationService.java
-└── ui/
-    ├── HeaderPanel.java
-    ├── HistoryPanel.java
-    ├── MainFrame.java
-    └── TranslationPanel.java
+```text
+Translator_P1_LLM_Proxy/
+├── data/
+│   └── history.json
+│
+├── src/
+│   └── main/
+│       └── java/
+│           ├── app/
+│           │   └── Main.java
+│           │
+│           ├── model/
+│           │   ├── ChatEntry.java
+│           │   ├── TranslationRequest.java
+│           │   └── TranslationResponse.java
+│           │
+│           ├── persistence/
+│           │   ├── ChatHistoryDAO.java
+│           │   └── FileChatHistoryDAO.java
+│           │
+│           ├── service/
+│           │   ├── LLMProxy.java
+│           │   └── TranslationService.java
+│           │
+│           └── ui/
+│               ├── HeaderPanel.java
+│               ├── HistoryPanel.java
+│               ├── MainFrame.java
+│               └── TranslationPanel.java
+│
+├── .gitignore
+├── pom.xml
+├── README.md
+└── TRANSLATOR_P1_LLMPROXY.env.example
+```
 
 ## Team Mitglieder und Rollen
 
