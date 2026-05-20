@@ -19,10 +19,24 @@ Datenbank gespeichert.
 
 ## Root Folder
 
--
--
--
--
+src/main/java/
+├── app/
+│   └── Main.java
+├── model/
+│   ├── ChatEntry.java
+│   ├── TranslationRequest.java
+│   └── TranslationResponse.java
+├── persistence/
+│   ├── ChatHistoryDAO.java
+│   └── FileChatHistoryDAO.java
+├── service/
+│   ├── LLMProxy.java
+│   └── TranslationService.java
+└── ui/
+    ├── HeaderPanel.java
+    ├── HistoryPanel.java
+    ├── MainFrame.java
+    └── TranslationPanel.java
 
 ## Team Mitglieder und Rollen
 

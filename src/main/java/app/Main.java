@@ -2,12 +2,13 @@ package app;
 
 public class Main {
 
-    /*
-     * this class just starts the programm there will be no logic implemented here at all it will
-     * implement the MainFrame.java class
-     * 
-     * 
-     * this class communicates and interacts with: -MainFrame.java
-     */
 
 }
+
+
+/*
+ * Responsibility: This class just starts the program. There will be no logic implemented here at
+ * all. It will implement the MainFrame.java class.
+ *
+ * Interactions: - ui.MainFrame.java: to display the main Swing window
+ */
