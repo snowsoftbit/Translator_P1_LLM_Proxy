@@ -1,5 +1,6 @@
-## General 
-Dies ist der GitHub Repo für unser LLM-Proxy-Klasse Projekt in OOP2. Das Repository ist [hier](https://github.com/sofia1738/Translator_P1_LLM_Proxy) abrufbar. Ziel war es ein Translator Tool zu erstellen welches...
+## General
+
+Dies ist der GitHub Repo für unser LLM-Proxy-Klasse Projekt in OOP2. Das Repository ist [hier](https://github.com/snowsoftbit/Translator_P1_LLM_Proxy) abrufbar. Ziel war es ein Translator Tool zu erstellen welches...
 
 -(Idee)Eigene Java-Klasse kapselt Zugriff auf
 ein LLM (z.B. OpenAI API). Die
@@ -16,8 +17,6 @@ realisiert.
 werden in Dateien oder einer
 Datenbank gespeichert.
 
-
-
 ## Root Folder
 
 -
@@ -27,20 +26,19 @@ Datenbank gespeichert.
 
 ## Team Mitglieder und Rollen
 
-- Zuständig für XXX: 
+- Zuständig für XXX:
 
-- Zuständig für XXXX: sofia1738
+- Zuständig für XXXX: [@snowsoftbit](https://github.com/snowsoftbit)
 
 - Zuständig für XXXX:
 
-- Zuständig für XXXX: 
+- Zuständig für XXXX:
 
 ## Bedienung und Anleitung für die Nutzung der App
 
 ![Demo Gif of APP](XXXX)
 
-1. 
-2. 
-3. 
+1.
+2.
+3.
 4.
-
