@@ -20,9 +20,12 @@ public interface ChatHistoryDAO {
  *
  * The actual work is done by FileChatHistoryDAO.java.
  *
- * Interactions: - model.ChatEntry.java: the methods in this interface will use ChatEntry objects as
- * a parameter and, or a return type - persistence.FileChatHistoryDAO.java: implements the interface
- * methods
+ * Interactions:
+ * 
+ * - model.ChatEntry.java: the methods in this interface will use ChatEntry objects as a parameter
+ * and, or a return type
+ * 
+ * - persistence.FileChatHistoryDAO.java: implements the interface methods
  */
 
 

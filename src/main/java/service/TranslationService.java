@@ -14,7 +14,12 @@ public class TranslationService {
  * LLMProxy class with the TranslationRequest and then return a TranslationResponse. It sits between
  * the GUI and the app logic. It should not interact with anything from the ui package.
  *
- * Interactions: - model.TranslationRequest.java: receives and reads the request data that the API
- * call in the LLMProxy must make - model.TranslationResponse.java: creates and returns the response
- * data - service.LLMProxy.java: calls the LLM class and receives the LLM result from it
+ * Interactions:
+ * 
+ * - model.TranslationRequest.java: receives and reads the request data that the API call in the
+ * LLMProxy must make
+ * 
+ * - model.TranslationResponse.java: creates and returns the response data
+ * 
+ * - service.LLMProxy.java: calls the LLM class and receives the LLM result from it
  */

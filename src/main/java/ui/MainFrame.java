@@ -13,8 +13,13 @@ public class MainFrame {
  * is no translation logic. It sets the window size, BorderLayout and the JSplitPane. It is the
  * container for the UI.
  *
- * Interactions: - ui.HeaderPanel.java: creates and places the header panel in the frame -
- * ui.HistoryPanel.java: creates and places the history panel in the frame -
- * ui.TranslationPanel.java: creates and places the translation panel in the frame - app.Main.java:
- * executes this frame
+ * Interactions:
+ * 
+ * - ui.HeaderPanel.java: creates and places the header panel in the frame
+ * 
+ * - ui.HistoryPanel.java: creates and places the history panel in the frame
+ * 
+ * - ui.TranslationPanel.java: creates and places the translation panel in the frame
+ * 
+ * - app.Main.java: executes this frame
  */

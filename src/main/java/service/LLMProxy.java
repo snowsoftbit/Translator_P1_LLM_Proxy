@@ -22,7 +22,12 @@ public class LLMProxy {
  * with the LLM model. It will receive the raw and unfiltered response from the model and build the
  * API request. All the API specific code will be here.
  *
- * Interactions: - service.TranslationService.java: receives calls from the TranslationService class
- * and returns the LLM results back to it - The external LLM: in this case the Qwen model - .env:
- * reads the API key, base URL and model name
+ * Interactions:
+ * 
+ * - service.TranslationService.java: receives calls from the TranslationService class and returns
+ * the LLM results back to it
+ * 
+ * - The external LLM: in this case the Qwen model
+ * 
+ * - .env: reads the API key, base URL and model name
  */

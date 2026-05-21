@@ -25,8 +25,12 @@ public class HistoryPanel {
  * It gets removed from the historical JSON list immediately. The JSON file gets reloaded, so a
  * refresh history method is good.
  *
- * Interactions: - model.ChatEntry.java: displays ChatEntry objects in the history list -
- * persistence.ChatHistoryDAO.java: calls the Data Access Object methods to load saved history
- * entries and delete them - ui.MainFrame.java: tells MainFrame when a user has selected and deleted
- * an entry
+ * Interactions:
+ * 
+ * - model.ChatEntry.java: displays ChatEntry objects in the history list
+ * 
+ * - persistence.ChatHistoryDAO.java: calls the Data Access Object methods to load saved history
+ * entries and delete them
+ * 
+ * - ui.MainFrame.java: tells MainFrame when a user has selected and deleted an entry
  */

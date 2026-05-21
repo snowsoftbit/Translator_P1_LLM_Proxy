@@ -13,8 +13,13 @@ public class ChatEntry {
  * So it has these properties: - unique id - title - source language - target language - original
  * text - translated text - time and date stamp
  *
- * Interactions: - persistence.FileChatHistoryDAO.java: saved to and loaded from the history file -
- * persistence.ChatHistoryDAO.java: uses the interface methods - ui.HistoryPanel.java: displayed in
- * the history list - ui.TranslationPanel.java: can be used to load up a previous translation into
- * the GUI
+ * Interactions:
+ * 
+ * - persistence.FileChatHistoryDAO.java: saved to and loaded from the history file
+ * 
+ * - persistence.ChatHistoryDAO.java: uses the interface methods
+ * 
+ * - ui.HistoryPanel.java: displayed in the history list
+ * 
+ * - ui.TranslationPanel.java: can be used to load up a previous translation into the GUI
  */
