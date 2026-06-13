@@ -1,5 +1,8 @@
 package ui;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import javax.swing.JPanel;
 import model.ChatEntry;
 import model.TranslationRequest;
 import model.TranslationResponse;
@@ -7,8 +10,14 @@ import persistence.ChatHistoryDAO;
 import service.TranslationService;
 
 
-public class TranslationPanel {
+public class TranslationPanel extends JPanel{
 
+	public TranslationPanel() {
+		
+		setLayout(new BorderLayout());
+		setPreferredSize(new Dimension(750, 600));
+		
+	}
 }
 
 
