@@ -47,14 +47,14 @@ public class LLMProxy {
     private String getRequiredEnvString(Dotenv dotenv, String key) {
 
         // what happens when modelName, baseUrl and apiKey is empty??
-        // test the cases
-
+        // test the cases+
         String value = dotenv.get(key);
 
 
         // if something only has whitespaces or is empty isBlank() will be true
         // null points to no object or reference
         if (value == null || value.isBlank()) {
+            // state and not and argument parsed into the method like chatEntryToTranslate
             throw new IllegalStateException("No " + key + " in .env");
 
         }
@@ -64,6 +64,10 @@ public class LLMProxy {
 
     public String sendRequest(String chatEntryToTranslate) {
 
+        if (chatEntryToTranslate == null || chatEntryToTranslate.isBlank()) {
+            throw new IllegalArgumentException("No chat entry to translate was found");
+
+        }
 
         try {
 
@@ -127,9 +131,10 @@ public class LLMProxy {
         }
 
         catch (Exception e) {
-            e.printStackTrace();
-            return "Error: We could not connect to the GWDG/KISS LLM";
+            throw new RuntimeException("We could not connect to the GWDG/KISS LLM", e);
         }
+
+
 
     }
 
