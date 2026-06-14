@@ -57,13 +57,13 @@ Translator_P1_LLM_Proxy/
 
 ## Team Mitglieder und Rollen
 
-- Zuständig für XXX:
+- Zuständig für Fenster und Grundlayout:[@leonjonasilg-design](https://github.com/leonjonasilg-design)
 
-- Zuständig für XXXX: [@snowsoftbit](https://github.com/snowsoftbit)
+- Zuständig für Service, API und Integration: [@snowsoftbit](https://github.com/snowsoftbit)
 
-- Zuständig für XXXX:
+- Zuständig für Daten und JSON-Speicherung:[@Burak92](https://github.com/Burak92)
 
-- Zuständig für XXXX:
+- Zuständig für Übersetzungsbereich:[@LeanderGuelland](https://github.com/LeanderGuelland)
 
 ## Bedienung und Anleitung für die Nutzung der App
 
