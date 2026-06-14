@@ -2,12 +2,8 @@ package ui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+
 import javax.swing.JPanel;
-import model.ChatEntry;
-import model.TranslationRequest;
-import model.TranslationResponse;
-import persistence.ChatHistoryDAO;
-import service.TranslationService;
 
 
 public class TranslationPanel extends JPanel{
@@ -18,8 +14,9 @@ public class TranslationPanel extends JPanel{
 		setPreferredSize(new Dimension(750, 600));
 		
 	}
-}
 
+	// 
+}
 
 /*
  * Responsibility: It must have: - input text area - language target selection dropdown menu -
