@@ -47,14 +47,14 @@ public class LlmProxy implements LlmClient {
     private String getRequiredEnvString(Dotenv dotenv, String key) {
 
         // what happens when modelName, baseUrl and apiKey is empty??
-        // test the cases+
+        // test the cases
         String value = dotenv.get(key);
 
 
         // if something only has whitespaces or is empty isBlank() will be true
-        // null points to no object or reference
+        // null points to no object or reference state and not an
+        // argument parsed into the method like chatEntryToTranslate
         if (value == null || value.isBlank()) {
-            // state and not and argument parsed into the method like chatEntryToTranslate
             throw new IllegalStateException("No " + key + " in .env");
 
         }
@@ -105,9 +105,10 @@ public class LlmProxy implements LlmClient {
 
 
         // Authenticates with the API Key that
-        // asks to send the response back as JSON.
+        // "Accept" asks to send the response back as JSON.
         // proves that we are allowed to use the API.
-        // Content-Type tells the server that the body is JSON
+        // Authorization is our API Key
+        // Content-Type tells the server that the body is JSON  
         // gson.toJson(body) method converts the Java JSON object into JSON text.
 
         HttpRequest request = HttpRequest.newBuilder()
@@ -119,6 +120,7 @@ public class LlmProxy implements LlmClient {
                 .build();
 
         return request;
+
     }
 
     private HttpResponse<String> sendHttpRequest(HttpRequest request) throws Exception {
@@ -146,7 +148,12 @@ public class LlmProxy implements LlmClient {
         // Converts the JSON response text back into a Java JsonObject for us to use
         JsonObject jsonResponse = gson.fromJson(response.body(), JsonObject.class);
 
-        // assigns the LLMs answers into a String
+        // gets the choices array from the JSON response
+        // takes the first choice with get(0)
+        // converts it into a JsonObject,
+        // gets the nested message object,
+        // reads its content field
+        // assigns the LLMs answers values into a String
         String modelAnswer = jsonResponse.getAsJsonArray("choices").get(0).getAsJsonObject()
                 .getAsJsonObject("message").get("content").getAsString();
 
