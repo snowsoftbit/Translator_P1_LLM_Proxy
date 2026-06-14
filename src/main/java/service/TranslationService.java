@@ -14,9 +14,10 @@ public class TranslationService {
         this.llmProxy = new LLMProxy();
     }
 
-    public TranslationResponse translateText(TranslationRequest request) {
+    public TranslationResponse getTranslatedText(TranslationRequest request) {
 
         // TranslationRequest must give me a getChatEntryText() method
+        // otherwise it shows up as an error
         String UserInputText = request.getChatEntryText();
 
 
@@ -25,7 +26,9 @@ public class TranslationService {
         String llmAnswer = llmProxy.sendRequest(UserInputText);
 
         // puts the LLM's answer into a response Object for TranslationReponse to handle
+        // methods and constructer must be created first there
         TranslationResponse response = new TranslationResponse(llmAnswer);
+
 
         // returns the reponse back to TranslationReponse
         return response;
