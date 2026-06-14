@@ -62,9 +62,9 @@ Translator_P1_LLM_Proxy/
 
 - Zuständig für Service, API und Integration: [@snowsoftbit](https://github.com/snowsoftbit)
 
-- Zuständig für Daten und JSON-Speicherung:[@Burak92](https://github.com/Burak92)
+- Zuständig für Daten und JSON-Speicherung:[@LeanderGuelland](https://github.com/Burak92)
 
-- Zuständig für Übersetzungsbereich:[@LeanderGuelland](https://github.com/LeanderGuelland)
+- Zuständig für Übersetzungsbereich:[@Burak92](https://github.com/LeanderGuelland)
 
 ## Bedienung und Anleitung für die Nutzung der App
 

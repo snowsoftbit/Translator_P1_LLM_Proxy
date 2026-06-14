@@ -175,7 +175,7 @@ public class LlmProxy implements LlmClient {
 
         catch (Exception e) {
             throw new RuntimeException(
-                    "Your Request to the GWDG/KISS LLM failed. Please try later.", e);
+                    "Your Request to the GWDG/KISS LLM failed. Try later.", e);
 
         }
 
