@@ -2,6 +2,20 @@ package model;
 
 public class TranslationRequest {
 
+    private final String TARGET_LANGUAGE;
+    private final String ORIGINAL_TEXT;
+
+    public TranslationRequest(ChatEntry chatEntry) {
+        this.TARGET_LANGUAGE = chatEntry.getTargetLanguage();
+        this.ORIGINAL_TEXT = chatEntry.getOriginalText();
+    }
+
+    public String getChatEntryText(){
+        String chatEntryText = "Translate the following text to " + TARGET_LANGUAGE + ": " + ORIGINAL_TEXT;
+
+        return chatEntryText;
+    }
+
 
 }
 
