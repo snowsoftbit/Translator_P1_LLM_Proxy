@@ -1,26 +1,147 @@
 package service;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import io.github.cdimascio.dotenv.Dotenv;
-
-import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
+import io.github.cdimascio.dotenv.Dotenv;
+
 
 
 public class LLMProxy {
 
+    private final String apiKey;
+    private final String baseUrl;
+    private final String modelName;
+
+    private final HttpClient httpClient;
+    private final Gson gson;
+
+    public LLMProxy() {
+
+
+        // Dotenv loads secret values from the .env file
+        Dotenv dotenv = Dotenv.load();
+
+        // uses my private method to check if
+        // the modelName, baseUrl and apiKey is empty??
+        this.apiKey = getRequiredEnvString(dotenv, "SAIA_API_KEY");
+        this.baseUrl = getRequiredEnvString(dotenv, "SAIA_BASE_URL");
+        this.modelName = getRequiredEnvString(dotenv, "SAIA_MODEL");
+
+        // cretease and assigns a HttpClient that
+        // sends requests to the API over the internet.
+        this.httpClient = HttpClient.newHttpClient();
+
+        // Gson converts Java JsonObjects into JSON text
+        // and JSON text back into Java objects
+        this.gson = new Gson();
+
+    }
+
+    private String getRequiredEnvString(Dotenv dotenv, String key) {
+
+        // what happens when modelName, baseUrl and apiKey is empty??
+        // test the cases
+
+        String value = dotenv.get(key);
+
+
+        // if something only has whitespaces or is empty isBlank() will be true
+        // null points to no object or reference
+        if (value == null || value.isBlank()) {
+            throw new IllegalStateException("No " + key + " in .env");
+
+        }
+        return value;
+
+    }
+
+    public String sendRequest(String chatEntryToTranslate) {
+
+
+        try {
+
+            // possibly break this up into a few methods?
+
+            // 1. build the Json Body
+            // JSON body is the data we send to the LLM API.
+            JsonObject body = new JsonObject();
+            body.addProperty("model", modelName);
+
+            // GWDG//KISS KI API expects a list of messages
+            JsonArray messages = new JsonArray();
+
+            JsonObject systemMessage = new JsonObject();
+            systemMessage.addProperty("role", "system");
+            systemMessage.addProperty("content",
+                    "You are a translation assistant that translates text into the users desired language. You also generate a summary of the translated text in addition to the translation");
+
+            JsonObject userMessage = new JsonObject();
+            userMessage.addProperty("role", "user");
+            userMessage.addProperty("content", chatEntryToTranslate);
+
+            messages.add(systemMessage);
+            messages.add(userMessage);
+
+            body.add("messages", messages);
+
+            // 2. build the HTTP request here.
+            // HTTP request is the message from our app to the SAIA/GWDG server.
+            // POST is used because we are sending data to the server.
+            HttpRequest request =
+                    HttpRequest.newBuilder().uri(URI.create(baseUrl + "/chat/completions"))
+                            .header("Authorization", "Bearer " + apiKey)
+                            .header("Content-Type", "application/json")
+                            .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(body)))
+
+                            .build();
+
+            // Authenticates with the API Key that
+            // proves that we are allowed to use the API.
+            // Content-Type tells the server that the body is JSON
+            // gson.toJson(body) method converts the Java JSON object into JSON text.
+
+
+            // 3. send the request
+            // stores the servers answer.
+            HttpResponse<String> response =
+                    httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+
+
+
+            // 4. get the answer back
+            // Converts the JSON response text back into a Java JsonObject for us to use
+            JsonObject jsonResponse = gson.fromJson(response.body(), JsonObject.class);
+
+            // assigns the LLMs answers into a String
+            String modelAnswer = jsonResponse.getAsJsonArray("choices").get(0).getAsJsonObject()
+                    .getAsJsonObject("message").get("content").getAsString();
+
+            return modelAnswer;
+        }
+
+        catch (Exception e) {
+            e.printStackTrace();
+            return "Error: We could not connect to the GWDG/KISS LLM";
+        }
+
+    }
+
 }
+
+
 
 /*
  * Responsibility: This class will be the center piece of our app. It will handle the communication
- * with the LLM model. It will receive the raw and unfiltered response from the model and build the
- * API request. All the API specific code will be here.
+ * with the LLM model. It will receive the raw and unfiltered response from the model as a chat
+ * entry and build the API request to the LLM. All the API specific code will be here. there is no
+ * back and forth communication. only reqeust and one answer.
  *
  * Interactions:
  * 

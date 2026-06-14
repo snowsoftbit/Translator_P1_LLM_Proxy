@@ -5,6 +5,33 @@ import model.TranslationResponse;
 
 public class TranslationService {
 
+    // needs to be declared to store a LLMProxy Object
+    private final LLMProxy llmProxy;
+
+    public TranslationService() {
+
+        // creates a LLMProcy object and assings it
+        this.llmProxy = new LLMProxy();
+    }
+
+    public TranslationResponse translateText(TranslationRequest request) {
+
+        // TranslationRequest must give me a getChatEntryText() method
+        String UserInputText = request.getChatEntryText();
+
+
+        // uses the LLMProxy classes sendRequest method to send a Request to the LLM
+        // saves it to a string
+        String llmAnswer = llmProxy.sendRequest(UserInputText);
+
+        // puts the LLM's answer into a response Object for TranslationReponse to handle
+        TranslationResponse response = new TranslationResponse(llmAnswer);
+
+        // returns the reponse back to TranslationReponse
+        return response;
+
+    }
+
 
 
 }
