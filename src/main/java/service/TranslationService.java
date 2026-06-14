@@ -6,12 +6,12 @@ import model.TranslationResponse;
 public class TranslationService {
 
     // needs to be declared to store a LLMProxy Object
-    private final LLMProxy llmProxy;
+    private final LlmProxy llmProxy;
 
     public TranslationService() {
 
         // creates a LLMProcy object and assings it
-        this.llmProxy = new LLMProxy();
+        this.llmProxy = new LlmProxy();
     }
 
     public TranslationResponse getTranslatedText(TranslationRequest request) {

@@ -13,7 +13,7 @@ import io.github.cdimascio.dotenv.Dotenv;
 
 
 
-public class LLMProxy {
+public class LlmProxy implements LlmClient {
 
     private final String apiKey;
     private final String baseUrl;
@@ -22,7 +22,7 @@ public class LLMProxy {
     private final HttpClient httpClient;
     private final Gson gson;
 
-    public LLMProxy() {
+    public LlmProxy() {
 
 
         // Dotenv loads secret values from the .env file
@@ -155,6 +155,7 @@ public class LLMProxy {
 
     }
 
+    @Override
     public String sendRequest(String chatEntryToTranslate) {
 
         if (chatEntryToTranslate == null || chatEntryToTranslate.isBlank()) {
@@ -168,15 +169,14 @@ public class LLMProxy {
             HttpRequest request = buildHttpRequest(body);
             HttpResponse<String> response = sendHttpRequest(request);
 
-
             return extractLlmAnswer(response);
-
-
 
         }
 
         catch (Exception e) {
-            throw new RuntimeException("We could not connect to the GWDG/KISS LLM", e);
+            throw new RuntimeException(
+                    "Your Request to the GWDG/KISS LLM failed. Please try later.", e);
+
         }
 
 

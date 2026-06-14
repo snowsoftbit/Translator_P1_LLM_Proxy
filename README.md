@@ -40,7 +40,8 @@ Translator_P1_LLM_Proxy/
 │           │   └── FileChatHistoryDAO.java
 │           │
 │           ├── service/
-│           │   ├── LLMProxy.java
+│           │   ├── LlmClient.java
+│           │   ├── LlmProxy.java
 │           │   └── TranslationService.java
 │           │
 │           └── ui/
