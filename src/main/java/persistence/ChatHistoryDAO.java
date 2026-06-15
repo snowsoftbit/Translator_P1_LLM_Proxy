@@ -1,11 +1,13 @@
 package persistence;
 
-import model.ChatEntry;
 import java.util.List;
 
+import model.ChatEntry;
+
 public interface ChatHistoryDAO {
+    void saveEntry(ChatEntry entry);
 
-
+    List<ChatEntry> loadEntries();
 }
 
 
