@@ -1,0 +1,6 @@
+{"id":123,"title":"Test","targetLanguage":"Deutsch","originalText":"Hello World","translatedText":"Hallo Welt","timestamp":"15.06.2026 21:07:59"}
+{"id":123,"title":"Test","targetLanguage":"Deutsch","originalText":"Hello World","translatedText":"Hallo Welt","timestamp":"15.06.2026 21:08:43"}
+{"id":123,"title":"Test","targetLanguage":"Deutsch","originalText":"Hello World","translatedText":"Hallo Welt","timestamp":"15.06.2026 21:41:59"}
+{"id":123,"title":"Test","targetLanguage":"Deutsch","originalText":"Hello World","translatedText":"Hallo Welt","timestamp":"15.06.2026 21:42:12"}
+{"id":123,"title":"Test","targetLanguage":"Deutsch","originalText":"Hello World","translatedText":"Hallo Welt","timestamp":"15.06.2026 21:56:36"}
+{"id":123,"title":"Test","targetLanguage":"Deutsch","originalText":"Hello World","translatedText":"Hallo Welt","timestamp":"15.06.2026 21:56:46"}
