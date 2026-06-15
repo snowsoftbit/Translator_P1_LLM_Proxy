@@ -108,7 +108,7 @@ public class LlmProxy implements LlmClient {
         // "Accept" asks to send the response back as JSON.
         // proves that we are allowed to use the API.
         // Authorization is our API Key
-        // Content-Type tells the server that the body is JSON  
+        // Content-Type tells the server that the body is JSON
         // gson.toJson(body) method converts the Java JSON object into JSON text.
 
         HttpRequest request = HttpRequest.newBuilder()
@@ -182,7 +182,7 @@ public class LlmProxy implements LlmClient {
 
         catch (Exception e) {
             throw new RuntimeException(
-                    "Your Request to the GWDG/KISS LLM failed. Try later.", e);
+                    "Your Translation request to the GWDG/KISS LLM failed. Try later.", e);
 
         }
 
