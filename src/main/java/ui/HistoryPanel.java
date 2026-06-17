@@ -1,11 +1,87 @@
 package ui;
 
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.util.Comparator;
+import java.util.List;
+
+import javax.swing.DefaultListModel;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
 import model.ChatEntry;
 import persistence.ChatHistoryDAO;
+import persistence.FileChatHistoryDAO;
 
-public class HistoryPanel {
+public class HistoryPanel extends JPanel{
 
+	private final DefaultListModel<ChatEntry> listModel = new DefaultListModel<>();
+	private final JList<ChatEntry> historyList = new JList<>(listModel);
+	private final ChatHistoryDAO chatHistoryDAO = new FileChatHistoryDAO("history.json");
+	private final MainFrame mainFrame;
+	
+	public HistoryPanel(MainFrame mainFrame) {
+
+		this.mainFrame = mainFrame;
+		setLayout(new BorderLayout());
+		setPreferredSize(new Dimension(250, 600));
+
+		historyList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		historyList.addListSelectionListener(new HistorySelectionListener());
+
+		add(new JLabel("Verlauf", JLabel.CENTER), BorderLayout.NORTH);
+		add(new JScrollPane(historyList), BorderLayout.CENTER);
+	}
+
+	public void refreshChatHistory() {
+		listModel.clear();
+
+		try {
+			List<ChatEntry> entries = chatHistoryDAO.loadEntries();
+			if (entries != null) {
+				entries.sort(new ChatEntryComparator());
+
+				for (ChatEntry entry : entries) {
+					listModel.addElement(entry);
+				}
+			}
+		} catch (Exception ex) {
+			System.out.println("Fehler beim Laden des Chatverlaufs");
+		}
+
+	}
+
+	private class HistorySelectionListener implements ListSelectionListener {
+		@Override
+		public void valueChanged(ListSelectionEvent e) {
+			if (!e.getValueIsAdjusting()) {
+				ChatEntry selectedChatEntry = historyList.getSelectedValue();
+
+				if (selectedChatEntry != null && mainFrame != null) {
+					
+					// MainFrame needs a method selectChatFromHistory(ChatEntry chatentry)
+					//mainFrame.selectChatFromHistory(selectedChatEntry);
+				}
+			}
+		}
+	}
+
+	private class ChatEntryComparator implements Comparator<ChatEntry> {
+		@Override
+		public int compare(ChatEntry entry1, ChatEntry entry2) {
+			return entry2.getTimestamp().compareTo(entry1.getTimestamp());
+		}
+	}
+
+	public void clearSelection() {
+		historyList.clearSelection();
+	}
 }
 
 /*
