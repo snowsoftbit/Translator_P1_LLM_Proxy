@@ -95,28 +95,12 @@ public class TranslationPanel extends JPanel{
 
 	// Loading selected chat-entry in input and output field
 	public void loadHistoryChat(String inputText, String translatedText) {
-		setInputText(inputText);
-		setOutputText(translatedText);
+		inputArea.setText(inputText);
+		outputArea.setText(translatedText);
 
 		inputArea.setEditable(false);
 		translateButton.setEnabled(false);
 		newChatButton.setVisible(true);
-	}
-
-	public String getInputText() {
-		return inputArea.getText();
-	}
-
-	public void setInputText(String text) {
-		inputArea.setText(text);
-	}
-
-	public String getTargetLanguage() {
-		return (String) targetLanguageComboBox.getSelectedItem();
-	}
-
-	public void setOutputText(String text) {
-		outputArea.setText(text);
 	}
 
 	private void addLanguagesToComboBox() {
@@ -134,8 +118,8 @@ public class TranslationPanel extends JPanel{
 	private class TranslateButtonListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			String inputText = getInputText();
-			String targetLanguage = getTargetLanguage();
+			String inputText = inputArea.getText();
+			String targetLanguage = (String) targetLanguageComboBox.getSelectedItem();
 
 			ChatEntry chatEntry = new ChatEntry("TestTitle", targetLanguage, inputText, "");
 			TranslationRequest request = new TranslationRequest(chatEntry);
@@ -143,7 +127,7 @@ public class TranslationPanel extends JPanel{
 			TranslationService translationService = new TranslationService();
 			TranslationResponse response = translationService.getTranslatedText(request);
 			String translatedText = response.getTranslatedText();
-			setOutputText(translatedText);
+			outputArea.setText(translatedText);
 			chatEntry.setTranslatedText(translatedText);
 
 			try {
@@ -159,8 +143,8 @@ public class TranslationPanel extends JPanel{
 	private class NewChatButtonListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			setInputText("");
-			setOutputText("");
+			inputArea.setText("");
+			outputArea.setText("");
 
 			inputArea.setEditable(true);
 			translateButton.setEnabled(false);
@@ -176,7 +160,7 @@ public class TranslationPanel extends JPanel{
 	// Character Counter Listener: Counts character, if more than 2000, button is disabled
 	private class CharCounterListener implements DocumentListener {
 		private void updateCount() {
-			int length = getInputText().length();
+			int length = inputArea.getText().length();
 			characterCountLabel.setText(length + " von 2000 Zeichen");
 
 			if (length > 0 && length <= 2000) {
