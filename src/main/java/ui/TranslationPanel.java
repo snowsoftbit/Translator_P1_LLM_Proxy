@@ -55,17 +55,17 @@ public class TranslationPanel extends JPanel{
 		JPanel topPanel = new JPanel(new BorderLayout());
 		topPanel.add(new JScrollPane(inputArea), BorderLayout.CENTER);
 
-		JPanel controlPanel = new JPanel();
-		targetLanguageComboBox.setFont(boldText);
-		addLanguagesToComboBox();
+		JPanel controlPanel = new JPanel();	
 
 		targetLanguageComboBox.setPreferredSize(new Dimension(150,40));
+		targetLanguageComboBox.setFont(boldText);
 		translateButton.setPreferredSize(new Dimension(150, 40));
 		translateButton.setBackground(new Color(220, 240, 240));
 		newChatButton.setPreferredSize(new Dimension(150, 40));
 		translateButton.setFont(boldText);
 		newChatButton.setFont(boldText);
 		
+		addLanguagesToComboBox();
 		controlPanel.add(targetLanguageComboBox);
 		controlPanel.add(translateButton);
 		translateButton.setEnabled(false);
@@ -80,6 +80,7 @@ public class TranslationPanel extends JPanel{
 		outputArea.setLineWrap(true);
 		outputArea.setWrapStyleWord(true);
 		outputArea.setEditable(false);
+		
 		bottomPanel.add(new JScrollPane(outputArea), BorderLayout.CENTER);
 
 		verticalSplitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, topPanel, bottomPanel);
