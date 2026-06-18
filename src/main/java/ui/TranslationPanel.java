@@ -28,23 +28,68 @@ import service.TranslationService;
 public class TranslationPanel extends JPanel{
 
 	private final JSplitPane verticalSplitPane;
-	private final OutputPanel outputPanel;
-	private final InputAndControlPanel inputAndControlPanel;
 	private final ChatHistoryDAO chatHistoryDAO = new FileChatHistoryDAO("history.json");
 	private final HistoryPanel historyPanel;
 
+	private final JTextArea inputArea = new JTextArea();
+	private final JTextArea outputArea = new JTextArea();
+	private final JButton translateButton = new JButton("Übersetzen");
+	private final JButton newChatButton = new JButton("Neuer Chat");
+	private final JComboBox<String> targetLanguageComboBox = new JComboBox<>();
+	private final JLabel characterCountLabel = new JLabel("0 von 2000 Zeichen");
+
 	public TranslationPanel(HistoryPanel historyPanel) {
 
+		//History panel is needed for refreshing chat history after a new chat entry
 		this.historyPanel = historyPanel;
 		setLayout(new BorderLayout());
 		setPreferredSize(new Dimension(750, 600));
 
-		outputPanel = new OutputPanel();
-		inputAndControlPanel = new InputAndControlPanel();
-		verticalSplitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, inputAndControlPanel, outputPanel);
+		Font biggerText = new Font("Arial", Font.PLAIN, 16);
+		Font boldText = new Font("Arial", Font.BOLD, 16);
+
+		inputArea.setFont(biggerText);
+		inputArea.setLineWrap(true);
+		inputArea.setWrapStyleWord(true);
+
+		JPanel topPanel = new JPanel(new BorderLayout());
+		topPanel.add(new JScrollPane(inputArea), BorderLayout.CENTER);
+
+		JPanel controlPanel = new JPanel();
+		targetLanguageComboBox.setFont(boldText);
+		addLanguagesToComboBox();
+
+		targetLanguageComboBox.setPreferredSize(new Dimension(150,40));
+		translateButton.setPreferredSize(new Dimension(150, 40));
+		translateButton.setBackground(new Color(220, 240, 240));
+		newChatButton.setPreferredSize(new Dimension(150, 40));
+		translateButton.setFont(boldText);
+		newChatButton.setFont(boldText);
+		
+		controlPanel.add(targetLanguageComboBox);
+		controlPanel.add(translateButton);
+		translateButton.setEnabled(false);
+		controlPanel.add(newChatButton);
+		newChatButton.setVisible(false);
+		controlPanel.add(characterCountLabel);
+
+		topPanel.add(controlPanel, BorderLayout.SOUTH);
+
+		JPanel bottomPanel = new JPanel(new BorderLayout());
+		outputArea.setFont(biggerText);
+		outputArea.setLineWrap(true);
+		outputArea.setWrapStyleWord(true);
+		outputArea.setEditable(false);
+		bottomPanel.add(new JScrollPane(outputArea), BorderLayout.CENTER);
+
+		verticalSplitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, topPanel, bottomPanel);
 		verticalSplitPane.setResizeWeight(0.5);
 
 		add(verticalSplitPane, BorderLayout.CENTER);
+
+		newChatButton.addActionListener(new NewChatButtonListener());
+		translateButton.addActionListener(new TranslateButtonListener());
+		inputArea.getDocument().addDocumentListener(new CharCounterListener());
 	}
 
 	// Loading selected chat-entry in input and output field
@@ -52,108 +97,34 @@ public class TranslationPanel extends JPanel{
 		setInputText(inputText);
 		setOutputText(translatedText);
 
-		inputAndControlPanel.inputArea.setEditable(false);
-		inputAndControlPanel.translateButton.setEnabled(false);
-		inputAndControlPanel.newChatButton.setVisible(true);
+		inputArea.setEditable(false);
+		translateButton.setEnabled(false);
+		newChatButton.setVisible(true);
 	}
 
 	public String getInputText() {
-		return inputAndControlPanel.getInputText();
+		return inputArea.getText();
 	}
 
 	public void setInputText(String text) {
-		inputAndControlPanel.setInputText(text);
+		inputArea.setText(text);
 	}
 
 	public String getTargetLanguage() {
-		return inputAndControlPanel.getTargetLanguage();
+		return (String) targetLanguageComboBox.getSelectedItem();
 	}
 
 	public void setOutputText(String text) {
-		outputPanel.setOutputText(text);
+		outputArea.setText(text);
 	}
 
-	// Input and Control Panel (on the top in vertical split)
-	private class InputAndControlPanel extends JPanel {
+	private void addLanguagesToComboBox() {
+		String[] languages = { "Englisch", "Chinesisch", "Hindi", "Spanisch", "Französisch", "Arabisch",
+				"Bengalisch", "Portugiesisch", "Russisch", "Urdu", "Indonesisch", "Deutsch", "Japanisch", "Pidgin",
+				"Marathi", "Telugu", "Türkisch", "Tamil", "Kantonesisch", "Vietnamesisch" };
 
-		private final JTextArea inputArea = new JTextArea();
-		private final JButton translateButton = new JButton("Übersetzen");
-		private final JButton newChatButton = new JButton("Neuer Chat");
-		private final JComboBox<String> targetLanguageComboBox = new JComboBox<>();
-		private final JLabel characterCountLabel = new JLabel("0 von 2000 Zeichen");
-
-		public InputAndControlPanel() {
-
-			setLayout(new BorderLayout());
-
-			Font biggerText = new Font("Arial", Font.PLAIN, 16);
-			Font boldText = new Font("Arial", Font.BOLD, 16);
-
-			inputArea.setFont(biggerText);
-			inputArea.setLineWrap(true);
-			inputArea.setWrapStyleWord(true);
-
-			JPanel controlPanel = new JPanel();
-			targetLanguageComboBox.setFont(boldText);
-			addLanguagesToComboBox();
-
-			translateButton.setPreferredSize(new Dimension(150, 40));
-			translateButton.setBackground(new Color(220, 240, 240));
-			newChatButton.setPreferredSize(new Dimension(150, 40));
-			translateButton.setFont(boldText);
-			newChatButton.setFont(boldText);
-			controlPanel.add(translateButton);
-			translateButton.setEnabled(false);
-			controlPanel.add(newChatButton);
-			newChatButton.setVisible(false);
-			controlPanel.add(characterCountLabel);
-
-			add(new JScrollPane(inputArea), BorderLayout.CENTER);
-			add(controlPanel, BorderLayout.SOUTH);
-
-			newChatButton.addActionListener(new NewChatButtonListener());
-			translateButton.addActionListener(new TranslateButtonListener());
-			inputArea.getDocument().addDocumentListener(new CharCounterListener());
-		}
-
-		public String getInputText() {
-			return inputArea.getText();
-		}
-
-		public void setInputText(String text) {
-			inputArea.setText(text);
-		}
-
-		public String getTargetLanguage() {
-			return (String) targetLanguageComboBox.getSelectedItem();
-		}
-
-		private void addLanguagesToComboBox() {
-			String[] languages = { "Englisch", "Chinesisch", "Hindi", "Spanisch", "Französisch", "Arabisch",
-					"Bengalisch", "Portugiesisch", "Russisch", "Urdu", "Indonesisch", "Deutsch", "Japanisch", "Pidgin",
-					"Marathi", "Telugu", "Türkisch", "Tamil", "Kantonesisch", "Vietnamesisch" };
-
-			for (String language : languages) {
-				targetLanguageComboBox.addItem(language);
-			}
-		}
-
-	}
-
-	// Output Panel (on the bottom in vertical split)
-	private class OutputPanel extends JPanel {
-
-		private final JTextArea outputArea = new JTextArea();
-
-		public OutputPanel() {
-
-			setLayout(new BorderLayout());
-			outputArea.setEditable(false);
-			add(new JScrollPane(outputArea), BorderLayout.CENTER);
-		}
-
-		public void setOutputText(String text) {
-			outputArea.setText(text);
+		for (String language : languages) {
+			targetLanguageComboBox.addItem(language);
 		}
 	}
 
@@ -177,12 +148,9 @@ public class TranslationPanel extends JPanel{
 			try {
 				chatHistoryDAO.saveEntry(chatEntry);
 				historyPanel.refreshChatHistory();
-
 			} catch (Exception ex) {
-
 				System.out.println("Fehler beim Speichern des Chat-Eintrags");
 			}
-
 		}
 	}
 
@@ -193,10 +161,10 @@ public class TranslationPanel extends JPanel{
 			setInputText("");
 			setOutputText("");
 
-			inputAndControlPanel.inputArea.setEditable(true);
-			inputAndControlPanel.translateButton.setEnabled(false);
-			inputAndControlPanel.newChatButton.setVisible(false);
-			inputAndControlPanel.characterCountLabel.setText("0 von 2000");
+			inputArea.setEditable(true);
+			translateButton.setEnabled(false);
+			newChatButton.setVisible(false);
+			characterCountLabel.setText("0 von 2000 Zeichen");
 
 			if (historyPanel != null) {
 				historyPanel.clearSelection();
@@ -207,14 +175,13 @@ public class TranslationPanel extends JPanel{
 	// Character Counter Listener: Counts character, if more than 2000, button is disabled
 	private class CharCounterListener implements DocumentListener {
 		private void updateCount() {
-
-			int length = inputAndControlPanel.getInputText().length();
-			inputAndControlPanel.characterCountLabel.setText(length + " von 2000 Zeichen");
+			int length = getInputText().length();
+			characterCountLabel.setText(length + " von 2000 Zeichen");
 
 			if (length > 0 && length <= 2000) {
-				inputAndControlPanel.translateButton.setEnabled(true);
+				translateButton.setEnabled(true);
 			} else {
-				inputAndControlPanel.translateButton.setEnabled(false);
+				translateButton.setEnabled(false);
 			}
 		}
 
@@ -230,10 +197,8 @@ public class TranslationPanel extends JPanel{
 
 		@Override
 		public void changedUpdate(DocumentEvent e) {
-
 		}
 	}
-
 	 
 }
 
