@@ -3,6 +3,7 @@ package ui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.util.Comparator;
 import java.util.List;
 
@@ -35,7 +36,9 @@ public class HistoryPanel extends JPanel{
 		historyList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		historyList.addListSelectionListener(new HistorySelectionListener());
 
-		add(new JLabel("Verlauf", JLabel.CENTER), BorderLayout.NORTH);
+		JLabel historyLabel = new JLabel("Verlauf", JLabel.CENTER);
+		historyLabel.setFont(new Font("Arial", Font.BOLD, 16));
+		add(historyLabel, BorderLayout.NORTH);
 		add(new JScrollPane(historyList), BorderLayout.CENTER);
 	}
 
@@ -65,8 +68,7 @@ public class HistoryPanel extends JPanel{
 
 				if (selectedChatEntry != null && mainFrame != null) {
 					
-					// MainFrame needs a method selectChatFromHistory(ChatEntry chatentry)
-					//mainFrame.selectChatFromHistory(selectedChatEntry);
+					mainFrame.selectChatFromHistory(selectedChatEntry);
 				}
 			}
 		}

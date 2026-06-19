@@ -1,6 +1,8 @@
 package ui;
 
-public class HeaderPanel {
+import javax.swing.JPanel;
+
+public class HeaderPanel extends JPanel{
 
 }
 

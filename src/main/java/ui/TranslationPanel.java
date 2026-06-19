@@ -53,6 +53,10 @@ public class TranslationPanel extends JPanel{
 		inputArea.setWrapStyleWord(true);
 
 		JPanel topPanel = new JPanel(new BorderLayout());
+		
+		JLabel sourceLabel = new JLabel("Quelltext");
+		sourceLabel.setFont(boldText);
+		topPanel.add(sourceLabel, BorderLayout.NORTH);
 		topPanel.add(new JScrollPane(inputArea), BorderLayout.CENTER);
 
 		JPanel controlPanel = new JPanel();	

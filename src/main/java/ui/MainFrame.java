@@ -1,10 +1,40 @@
 package ui;
 
+import java.awt.BorderLayout;
 
+import javax.swing.JFrame;
+import javax.swing.JSplitPane;
 
-public class MainFrame {
+import model.ChatEntry;
 
+public class MainFrame extends JFrame{
 
+	private JSplitPane horizontalSplitPane;
+	private HeaderPanel headerPanel = new HeaderPanel();
+	private TranslationPanel translationPanel;
+	private HistoryPanel historyPanel;
+	private StatusPanel statusPanel = new StatusPanel();
+
+	public MainFrame() {
+		super("TranslAItor");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLayout(new BorderLayout());
+
+		this.historyPanel = new HistoryPanel(this);
+		this.translationPanel = new TranslationPanel(this.historyPanel);
+		horizontalSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, historyPanel, translationPanel);
+
+		getContentPane().add(headerPanel, BorderLayout.NORTH);
+		getContentPane().add(horizontalSplitPane, BorderLayout.CENTER);
+		getContentPane().add(statusPanel, BorderLayout.SOUTH);
+		
+		pack();
+		setVisible(true);
+	}
+
+	public void selectChatFromHistory(ChatEntry selectedChat) {
+		translationPanel.loadHistoryChat(selectedChat.getOriginalText(), selectedChat.getTranslatedText());
+	}
 }
 
 /*
