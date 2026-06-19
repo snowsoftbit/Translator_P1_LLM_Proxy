@@ -80,6 +80,10 @@ public class TranslationPanel extends JPanel{
 		topPanel.add(controlPanel, BorderLayout.SOUTH);
 
 		JPanel bottomPanel = new JPanel(new BorderLayout());
+		
+		JLabel translationLabel = new JLabel("Übersetzung");
+		translationLabel.setFont(boldText);
+		bottomPanel.add(translationLabel, BorderLayout.NORTH);
 		outputArea.setFont(biggerText);
 		outputArea.setLineWrap(true);
 		outputArea.setWrapStyleWord(true);
