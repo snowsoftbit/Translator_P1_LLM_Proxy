@@ -26,6 +26,7 @@ public class HistoryPanel extends JPanel{
 	private final JList<ChatEntry> historyList = new JList<>(listModel);
 	private final ChatHistoryDAO chatHistoryDAO = new FileChatHistoryDAO("history.json");
 	private final MainFrame mainFrame;
+	private final int MAX_ENTRIES_TO_SHOW = 10;
 	
 	public HistoryPanel(MainFrame mainFrame) {
 
@@ -33,6 +34,7 @@ public class HistoryPanel extends JPanel{
 		setLayout(new BorderLayout());
 		setPreferredSize(new Dimension(250, 600));
 
+		historyList.setFont(new Font("Arial", Font.PLAIN, 16));
 		historyList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		historyList.addListSelectionListener(new HistorySelectionListener());
 
@@ -40,6 +42,8 @@ public class HistoryPanel extends JPanel{
 		historyLabel.setFont(new Font("Arial", Font.BOLD, 16));
 		add(historyLabel, BorderLayout.NORTH);
 		add(new JScrollPane(historyList), BorderLayout.CENTER);
+		
+		refreshChatHistory();
 	}
 
 	public void refreshChatHistory() {
@@ -47,11 +51,17 @@ public class HistoryPanel extends JPanel{
 
 		try {
 			List<ChatEntry> entries = chatHistoryDAO.loadEntries();
+			int count = 0;
+			
 			if (entries != null) {
 				entries.sort(new ChatEntryComparator());
 
 				for (ChatEntry entry : entries) {
+					if (count >= MAX_ENTRIES_TO_SHOW) {
+						break;
+					}
 					listModel.addElement(entry);
+					count++;
 				}
 			}
 		} catch (Exception ex) {

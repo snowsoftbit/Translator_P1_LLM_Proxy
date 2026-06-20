@@ -35,6 +35,7 @@ public class TranslationPanel extends JPanel{
 	private final JTextArea outputArea = new JTextArea();
 	private final JButton translateButton = new JButton("Übersetzen");
 	private final JButton newChatButton = new JButton("Neuer Chat");
+	private final JLabel selectTargetLanguageLabel = new JLabel("Zielsprache auswählen: ");
 	private final JComboBox<String> targetLanguageComboBox = new JComboBox<>();
 	private final JLabel characterCountLabel = new JLabel("0 von 2000 Zeichen");
 
@@ -63,6 +64,7 @@ public class TranslationPanel extends JPanel{
 
 		targetLanguageComboBox.setPreferredSize(new Dimension(150,40));
 		targetLanguageComboBox.setFont(boldText);
+		selectTargetLanguageLabel.setFont(boldText);
 		translateButton.setPreferredSize(new Dimension(150, 40));
 		translateButton.setBackground(new Color(220, 240, 240));
 		newChatButton.setPreferredSize(new Dimension(150, 40));
@@ -70,6 +72,7 @@ public class TranslationPanel extends JPanel{
 		newChatButton.setFont(boldText);
 		
 		addLanguagesToComboBox();
+		controlPanel.add(selectTargetLanguageLabel);
 		controlPanel.add(targetLanguageComboBox);
 		controlPanel.add(translateButton);
 		translateButton.setEnabled(false);
