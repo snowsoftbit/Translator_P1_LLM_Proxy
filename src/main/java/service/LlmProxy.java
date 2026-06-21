@@ -42,6 +42,7 @@ public class LlmProxy implements LlmClient {
         // and JSON text back into Java objects
         this.gson = new Gson();
 
+
     }
 
     private String getRequiredEnvString(Dotenv dotenv, String key) {
@@ -57,9 +58,9 @@ public class LlmProxy implements LlmClient {
         if (value == null || value.isBlank()) {
             throw new IllegalStateException("No " + key + " in .env");
 
+
         }
         return value;
-
     }
 
     private JsonObject buildRequestBody(String chatEntryToTranslate) {
@@ -74,17 +75,12 @@ public class LlmProxy implements LlmClient {
 
         JsonObject systemMessage = new JsonObject();
         systemMessage.addProperty("role", "system");
-        systemMessage.addProperty("content",
-        "You are a very good translation assistant. "
-        + "Do not think step by step. "
-        + "Do not output reasoning. "
-        + "Do not explain your reasoning. "
-        + "Do not use Markdown. "
-        + "Translate the user's text into the desired language. "
-        + "Also provide a short summary. "
-        + "Return only this format:\n"
-        + "Translation: <translated text>\n"
-        + "Summary: <one or two short sentences>");
+        systemMessage.addProperty("content", "You are a very good translation assistant. "
+                + "Do not think step by step. " + "Do not output reasoning. "
+                + "Do not explain your reasoning. " + "Do not use Markdown. "
+                + "Translate the user's text into the desired language. "
+                + "Also provide a short summary. " + "Return only this format:\n"
+                + "Translation: <translated text>\n" + "Summary: <one or two short sentences>");
 
         JsonObject userMessage = new JsonObject();
         userMessage.addProperty("role", "user");
@@ -207,6 +203,8 @@ public class LlmProxy implements LlmClient {
 
 
     }
+
+
 
 }
 

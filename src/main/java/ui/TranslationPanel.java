@@ -117,7 +117,7 @@ public class TranslationPanel extends JPanel {
 		String[] languages = {"Englisch", "Chinesisch", "Hindi", "Spanisch", "Französisch",
 				"Arabisch", "Bengalisch", "Portugiesisch", "Russisch", "Urdu", "Indonesisch",
 				"Deutsch", "Japanisch", "Pidgin", "Marathi", "Telugu", "Türkisch", "Tamil",
-				"Kantonesisch", "Vietnamesisch"};
+				"Kantonesisch", "Koreanisch", "Vietnamesisch"};
 
 		for (String language : languages) {
 			targetLanguageComboBox.addItem(language);
