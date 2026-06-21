@@ -9,7 +9,7 @@ public class TranslationRequest {
         this.TARGET_LANGUAGE = chatEntry.getTargetLanguage();
         this.ORIGINAL_TEXT = chatEntry.getOriginalText();
     }
-
+//Hello 
     public String getChatEntryText() {
         String chatEntryText =
                 "Translate the following text to " + TARGET_LANGUAGE + ": " + ORIGINAL_TEXT;
