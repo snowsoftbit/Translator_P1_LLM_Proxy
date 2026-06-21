@@ -28,9 +28,8 @@ import service.TranslationService;
 public class TranslationPanel extends JPanel {
 
 	private final JSplitPane verticalSplitPane;
-	private final ChatHistoryDAO chatHistoryDAO = new FileChatHistoryDAO("history.json");
+	private final ChatHistoryDAO chatHistoryDAO = new FileChatHistoryDAO("data/history.json");
 	private final HistoryPanel historyPanel;
-
 	private final JTextArea inputArea = new JTextArea();
 	private final JTextArea outputArea = new JTextArea();
 	private final JButton translateButton = new JButton("Übersetzen");
