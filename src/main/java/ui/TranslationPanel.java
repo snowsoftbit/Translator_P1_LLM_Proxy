@@ -20,12 +20,12 @@ import javax.swing.event.DocumentListener;
 import model.ChatEntry;
 import model.TranslationRequest;
 import model.TranslationResponse;
-import persistence.FileChatHistoryDAO;
 import persistence.ChatHistoryDAO;
+import persistence.FileChatHistoryDAO;
 import service.TranslationService;
 
 
-public class TranslationPanel extends JPanel{
+public class TranslationPanel extends JPanel {
 
 	private final JSplitPane verticalSplitPane;
 	private final ChatHistoryDAO chatHistoryDAO = new FileChatHistoryDAO("history.json");
@@ -41,7 +41,7 @@ public class TranslationPanel extends JPanel{
 
 	public TranslationPanel(HistoryPanel historyPanel) {
 
-		//History panel is needed for refreshing chat history after a new chat entry
+		// History panel is needed for refreshing chat history after a new chat entry
 		this.historyPanel = historyPanel;
 		setLayout(new BorderLayout());
 		setPreferredSize(new Dimension(750, 600));
@@ -54,15 +54,15 @@ public class TranslationPanel extends JPanel{
 		inputArea.setWrapStyleWord(true);
 
 		JPanel topPanel = new JPanel(new BorderLayout());
-		
+
 		JLabel sourceLabel = new JLabel("Quelltext");
 		sourceLabel.setFont(boldText);
 		topPanel.add(sourceLabel, BorderLayout.NORTH);
 		topPanel.add(new JScrollPane(inputArea), BorderLayout.CENTER);
 
-		JPanel controlPanel = new JPanel();	
+		JPanel controlPanel = new JPanel();
 
-		targetLanguageComboBox.setPreferredSize(new Dimension(150,40));
+		targetLanguageComboBox.setPreferredSize(new Dimension(150, 40));
 		targetLanguageComboBox.setFont(boldText);
 		selectTargetLanguageLabel.setFont(boldText);
 		translateButton.setPreferredSize(new Dimension(150, 40));
@@ -70,7 +70,7 @@ public class TranslationPanel extends JPanel{
 		newChatButton.setPreferredSize(new Dimension(150, 40));
 		translateButton.setFont(boldText);
 		newChatButton.setFont(boldText);
-		
+
 		addLanguagesToComboBox();
 		controlPanel.add(selectTargetLanguageLabel);
 		controlPanel.add(targetLanguageComboBox);
@@ -83,7 +83,7 @@ public class TranslationPanel extends JPanel{
 		topPanel.add(controlPanel, BorderLayout.SOUTH);
 
 		JPanel bottomPanel = new JPanel(new BorderLayout());
-		
+
 		JLabel translationLabel = new JLabel("Übersetzung");
 		translationLabel.setFont(boldText);
 		bottomPanel.add(translationLabel, BorderLayout.NORTH);
@@ -91,7 +91,7 @@ public class TranslationPanel extends JPanel{
 		outputArea.setLineWrap(true);
 		outputArea.setWrapStyleWord(true);
 		outputArea.setEditable(false);
-		
+
 		bottomPanel.add(new JScrollPane(outputArea), BorderLayout.CENTER);
 
 		verticalSplitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, topPanel, bottomPanel);
@@ -115,9 +115,10 @@ public class TranslationPanel extends JPanel{
 	}
 
 	private void addLanguagesToComboBox() {
-		String[] languages = { "Englisch", "Chinesisch", "Hindi", "Spanisch", "Französisch", "Arabisch",
-				"Bengalisch", "Portugiesisch", "Russisch", "Urdu", "Indonesisch", "Deutsch", "Japanisch", "Pidgin",
-				"Marathi", "Telugu", "Türkisch", "Tamil", "Kantonesisch", "Vietnamesisch" };
+		String[] languages = {"Englisch", "Chinesisch", "Hindi", "Spanisch", "Französisch",
+				"Arabisch", "Bengalisch", "Portugiesisch", "Russisch", "Urdu", "Indonesisch",
+				"Deutsch", "Japanisch", "Pidgin", "Marathi", "Telugu", "Türkisch", "Tamil",
+				"Kantonesisch", "Vietnamesisch"};
 
 		for (String language : languages) {
 			targetLanguageComboBox.addItem(language);
@@ -150,7 +151,7 @@ public class TranslationPanel extends JPanel{
 		}
 	}
 
-	// "Neuer Chat" Button Listener: Clear input and output area and start a new translation 
+	// "Neuer Chat" Button Listener: Clear input and output area and start a new translation
 	private class NewChatButtonListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -192,10 +193,9 @@ public class TranslationPanel extends JPanel{
 		}
 
 		@Override
-		public void changedUpdate(DocumentEvent e) {
-		}
+		public void changedUpdate(DocumentEvent e) {}
 	}
-	 
+
 }
 
 /*

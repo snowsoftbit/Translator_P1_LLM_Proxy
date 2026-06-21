@@ -12,7 +12,8 @@ public class ChatEntry {
     private String translatedText;
     private String timestamp;
 
-    public ChatEntry(String title, String targetLanguage, String originalText, String translatedText) {
+    public ChatEntry(String title, String targetLanguage, String originalText,
+            String translatedText) {
         setId();
         setCurrentTimestamp();
 
@@ -23,7 +24,8 @@ public class ChatEntry {
     }
 
     private void setCurrentTimestamp() {
-        this.timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss"));
+        this.timestamp =
+                LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss"));
     }
 
     private void setId() {

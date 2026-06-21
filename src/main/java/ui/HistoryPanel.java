@@ -20,14 +20,14 @@ import model.ChatEntry;
 import persistence.ChatHistoryDAO;
 import persistence.FileChatHistoryDAO;
 
-public class HistoryPanel extends JPanel{
+public class HistoryPanel extends JPanel {
 
 	private final DefaultListModel<ChatEntry> listModel = new DefaultListModel<>();
 	private final JList<ChatEntry> historyList = new JList<>(listModel);
 	private final ChatHistoryDAO chatHistoryDAO = new FileChatHistoryDAO("history.json");
 	private final MainFrame mainFrame;
 	private final int MAX_ENTRIES_TO_SHOW = 10;
-	
+
 	public HistoryPanel(MainFrame mainFrame) {
 
 		this.mainFrame = mainFrame;
@@ -42,7 +42,7 @@ public class HistoryPanel extends JPanel{
 		historyLabel.setFont(new Font("Arial", Font.BOLD, 16));
 		add(historyLabel, BorderLayout.NORTH);
 		add(new JScrollPane(historyList), BorderLayout.CENTER);
-		
+
 		refreshChatHistory();
 	}
 
@@ -52,7 +52,7 @@ public class HistoryPanel extends JPanel{
 		try {
 			List<ChatEntry> entries = chatHistoryDAO.loadEntries();
 			int count = 0;
-			
+
 			if (entries != null) {
 				entries.sort(new ChatEntryComparator());
 
@@ -77,7 +77,7 @@ public class HistoryPanel extends JPanel{
 				ChatEntry selectedChatEntry = historyList.getSelectedValue();
 
 				if (selectedChatEntry != null && mainFrame != null) {
-					
+
 					mainFrame.selectChatFromHistory(selectedChatEntry);
 				}
 			}

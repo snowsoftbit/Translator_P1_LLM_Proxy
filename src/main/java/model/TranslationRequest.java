@@ -10,8 +10,9 @@ public class TranslationRequest {
         this.ORIGINAL_TEXT = chatEntry.getOriginalText();
     }
 
-    public String getChatEntryText(){
-        String chatEntryText = "Translate the following text to " + TARGET_LANGUAGE + ": " + ORIGINAL_TEXT;
+    public String getChatEntryText() {
+        String chatEntryText =
+                "Translate the following text to " + TARGET_LANGUAGE + ": " + ORIGINAL_TEXT;
 
         return chatEntryText;
     }
