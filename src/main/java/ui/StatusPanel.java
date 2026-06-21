@@ -12,7 +12,6 @@ public class StatusPanel extends JPanel {
 
 
 	private final JLabel status = new JLabel();
-	private final JLabel label = new JLabel("");
 	private final Boolean keyStatus;
 
 	public StatusPanel() {
