@@ -62,7 +62,7 @@ public class HistoryPanel extends JPanel {
 					}
 					listModel.addElement(entry);
 					count++;
-				}
+				} 
 			}
 		} catch (Exception ex) {
 			System.out.println("Fehler beim Laden des Chatverlaufs");
@@ -78,7 +78,7 @@ public class HistoryPanel extends JPanel {
 
 				if (selectedChatEntry != null && mainFrame != null) {
 
-					mainFrame.selectChatFromHistory(selectedChatEntry);
+					 mainFrame.selectChatFromHistory(selectedChatEntry);
 				}
 			}
 		}
