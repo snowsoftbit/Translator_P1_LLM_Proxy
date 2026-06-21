@@ -1,1 +1,2 @@
 {"id":123,"title":"Test","targetLanguage":"Deutsch","originalText":"Hello World","translatedText":"Hallo Welt","timestamp":"15.06.2026 21:08:23"}
+{"id":123,"title":"TestTitle","targetLanguage":"Englisch","originalText":"Ich esse gerne pommes","translatedText":"**Translation:**\nI like to eat fries.\n\n**Summary:**\nThe sentence expresses a personal preference for eating French fries.","timestamp":"21.06.2026 15:53:38"}

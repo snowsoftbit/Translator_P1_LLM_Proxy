@@ -24,7 +24,7 @@ public class HistoryPanel extends JPanel {
 
 	private final DefaultListModel<ChatEntry> listModel = new DefaultListModel<>();
 	private final JList<ChatEntry> historyList = new JList<>(listModel);
-	private final ChatHistoryDAO chatHistoryDAO = new FileChatHistoryDAO("history.json");
+	private final ChatHistoryDAO chatHistoryDAO = new FileChatHistoryDAO("data/history.json");
 	private final MainFrame mainFrame;
 	private final int MAX_ENTRIES_TO_SHOW = 10;
 
