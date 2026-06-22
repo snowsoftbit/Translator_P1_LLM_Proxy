@@ -132,7 +132,7 @@ public class TranslationPanel extends JPanel {
 			String inputText = inputArea.getText();
 			String targetLanguage = (String) targetLanguageComboBox.getSelectedItem();
 
-			ChatEntry chatEntry = new ChatEntry("TestTitle", targetLanguage, inputText, "");
+			ChatEntry chatEntry = new ChatEntry("Eintrag", targetLanguage, inputText, "");
 			TranslationRequest request = new TranslationRequest(chatEntry);
 
 			TranslationService translationService = new TranslationService();
