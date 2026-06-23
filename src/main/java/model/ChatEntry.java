@@ -1,5 +1,6 @@
 package model;
 
+import java.io.File;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -11,10 +12,11 @@ public class ChatEntry {
     private String originalText;
     private String translatedText;
     private String timestamp;
+    private final String DATA_PATH = "data";
 
     public ChatEntry(String title, String targetLanguage, String originalText,
             String translatedText) {
-        setId();
+        
         setCurrentTimestamp();
 
         this.title = title;
@@ -28,8 +30,25 @@ public class ChatEntry {
                 LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss"));
     }
 
-    private void setId() {
-        this.id = 123;
+    public void createUniqueId() {
+        File dir = new File(DATA_PATH);
+        File[] directoryListing = dir.listFiles();
+
+        int temp_id = (int) (Math.random() * 1000000);
+
+        if(directoryListing != null){
+            for(File f : directoryListing){
+                if(f.getName().equals(Integer.toString(temp_id) + ".json")){
+                    temp_id = (int) (Math.random() * 1000000);
+                }
+            }
+
+            this.id = temp_id;
+        }
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getId() {
