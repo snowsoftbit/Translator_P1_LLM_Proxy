@@ -24,7 +24,7 @@ public class HistoryPanel extends JPanel {
 
 	private final DefaultListModel<ChatEntry> listModel = new DefaultListModel<>();
 	private final JList<ChatEntry> historyList = new JList<>(listModel);
-	private final ChatHistoryDAO chatHistoryDAO = new FileChatHistoryDAO("history.json");
+	private final ChatHistoryDAO chatHistoryDAO = new FileChatHistoryDAO("data/history.json");
 	private final MainFrame mainFrame;
 	private final int MAX_ENTRIES_TO_SHOW = 10;
 
@@ -62,7 +62,7 @@ public class HistoryPanel extends JPanel {
 					}
 					listModel.addElement(entry);
 					count++;
-				}
+				} 
 			}
 		} catch (Exception ex) {
 			System.out.println("Fehler beim Laden des Chatverlaufs");
@@ -78,7 +78,7 @@ public class HistoryPanel extends JPanel {
 
 				if (selectedChatEntry != null && mainFrame != null) {
 
-					mainFrame.selectChatFromHistory(selectedChatEntry);
+					 mainFrame.selectChatFromHistory(selectedChatEntry);
 				}
 			}
 		}

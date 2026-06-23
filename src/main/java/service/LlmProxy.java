@@ -42,6 +42,7 @@ public class LlmProxy implements LlmClient {
         // and JSON text back into Java objects
         this.gson = new Gson();
 
+
     }
 
     private String getRequiredEnvString(Dotenv dotenv, String key) {
@@ -57,9 +58,9 @@ public class LlmProxy implements LlmClient {
         if (value == null || value.isBlank()) {
             throw new IllegalStateException("No " + key + " in .env");
 
+
         }
         return value;
-
     }
 
     private JsonObject buildRequestBody(String chatEntryToTranslate) {
@@ -74,8 +75,12 @@ public class LlmProxy implements LlmClient {
 
         JsonObject systemMessage = new JsonObject();
         systemMessage.addProperty("role", "system");
-        systemMessage.addProperty("content",
-                "You are a translation assistant. Translate the user's text into the desired language. Also provide a short summary. Do not explain your reasoning.");
+        systemMessage.addProperty("content", "You are a very good translation assistant. "
+                + "Do not think step by step. " + "Do not output reasoning. "
+                + "Do not explain your reasoning. " + "Do not use Markdown. "
+                + "Translate the user's text into the desired language. "
+                + "Also provide a short summary. " + "Return only this format:\n"
+                + "Translation: <translated text>\n" + "Summary: <one or two short sentences>");
 
         JsonObject userMessage = new JsonObject();
         userMessage.addProperty("role", "user");
@@ -85,10 +90,15 @@ public class LlmProxy implements LlmClient {
         messages.add(userMessage);
 
         // strict translation and no creativity
-        body.addProperty("temperature", 0);
+        body.addProperty("temperature", 0.6);
 
         // limits the answer length of the model
-        body.addProperty("max_tokens", 512);
+        // one translation will be less than 80 tokens
+        body.addProperty("max_tokens", 1500);
+
+        // controls how many possible next words/tokens the model is allowed to consider.
+        // Controls output randomness together with temperature.
+        body.addProperty("top_p", 0.95);
 
         // adds the userMessage and systemMessage we made in the JsonArray messages
         body.add("messages", messages);
@@ -144,6 +154,10 @@ public class LlmProxy implements LlmClient {
 
     private String extractLlmAnswer(HttpResponse<String> response) {
 
+        System.out.println("XXX RAW API RESPONSE XXX");
+        System.out.println(response.body());
+        System.out.println("XXXXXXXXXXXXXXXXXXXXXXXX");
+
         // 4. get the answer back
         // Converts the JSON response text back into a Java JsonObject for us to use
         JsonObject jsonResponse = gson.fromJson(response.body(), JsonObject.class);
@@ -189,6 +203,8 @@ public class LlmProxy implements LlmClient {
 
 
     }
+
+
 
 }
 

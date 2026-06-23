@@ -28,9 +28,8 @@ import service.TranslationService;
 public class TranslationPanel extends JPanel {
 
 	private final JSplitPane verticalSplitPane;
-	private final ChatHistoryDAO chatHistoryDAO = new FileChatHistoryDAO("history.json");
+	private final ChatHistoryDAO chatHistoryDAO = new FileChatHistoryDAO("data/history.json");
 	private final HistoryPanel historyPanel;
-
 	private final JTextArea inputArea = new JTextArea();
 	private final JTextArea outputArea = new JTextArea();
 	private final JButton translateButton = new JButton("Übersetzen");
@@ -118,7 +117,7 @@ public class TranslationPanel extends JPanel {
 		String[] languages = {"Englisch", "Chinesisch", "Hindi", "Spanisch", "Französisch",
 				"Arabisch", "Bengalisch", "Portugiesisch", "Russisch", "Urdu", "Indonesisch",
 				"Deutsch", "Japanisch", "Pidgin", "Marathi", "Telugu", "Türkisch", "Tamil",
-				"Kantonesisch", "Vietnamesisch"};
+				"Kantonesisch", "Koreanisch", "Vietnamesisch"};
 
 		for (String language : languages) {
 			targetLanguageComboBox.addItem(language);
@@ -133,7 +132,7 @@ public class TranslationPanel extends JPanel {
 			String inputText = inputArea.getText();
 			String targetLanguage = (String) targetLanguageComboBox.getSelectedItem();
 
-			ChatEntry chatEntry = new ChatEntry("TestTitle", targetLanguage, inputText, "");
+			ChatEntry chatEntry = new ChatEntry("Eintrag", targetLanguage, inputText, "");
 			TranslationRequest request = new TranslationRequest(chatEntry);
 
 			TranslationService translationService = new TranslationService();
