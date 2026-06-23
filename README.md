@@ -48,6 +48,7 @@ Translator_P1_LLM_Proxy/
 │               ├── HeaderPanel.java
 │               ├── HistoryPanel.java
 │               ├── MainFrame.java
+                ├── StatusPanel.java
 │               └── TranslationPanel.java
 │
 ├── .gitignore

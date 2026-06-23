@@ -127,7 +127,7 @@ public class LlmProxy implements LlmClient {
                 .header("Content-Type", "application/json")
                 .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(body)))
 
-                .build();
+                .build ();
 
         return request;
 
