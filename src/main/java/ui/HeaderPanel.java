@@ -1,9 +1,22 @@
 package ui;
-
 import javax.swing.JPanel;
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.Color;
+
+    
 
 public class HeaderPanel extends JPanel {
+    private JLabel titleLabel;
 
+    public HeaderPanel() {
+        titleLabel = new JLabel("<html>Transl<b>AI</b>tor</html>");
+        titleLabel.setFont(new Font("Arial", Font.PLAIN, 28));
+        titleLabel.setForeground(new Color(41, 128, 185));
+        
+        
+        add(titleLabel);
+    }
 }
 
 /*
