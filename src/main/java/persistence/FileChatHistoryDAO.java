@@ -20,6 +20,7 @@ public class FileChatHistoryDAO implements ChatHistoryDAO {
         this.filePath = filePath;
     }
 
+    //implemented from ChatHistoryDao. Saves a ChatEntry local as JSON file in directory data.
     @Override
     public void saveEntry(ChatEntry entry) {
         Gson gson = new Gson();
@@ -32,6 +33,7 @@ public class FileChatHistoryDAO implements ChatHistoryDAO {
         }
     }
 
+    //implemented from ChatHistoryDao. Loads all ChatEntry objects from the local JSON file in directory data.
     @Override
     public List<ChatEntry> loadEntries() {
         List<ChatEntry> entries = new ArrayList<>();
