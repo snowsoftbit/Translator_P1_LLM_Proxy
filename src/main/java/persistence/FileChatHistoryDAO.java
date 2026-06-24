@@ -34,31 +34,35 @@ public class FileChatHistoryDAO implements ChatHistoryDAO {
     }
 
     //implemented from ChatHistoryDao. Loads all ChatEntry objects from the local JSON file in directory data.
+    // read each saved json line back into a ChatEntry object instead of splitting it manually
+    // previously this public method used a delimiter and treated it like a csv file 
     @Override
     public List<ChatEntry> loadEntries() {
         List<ChatEntry> entries = new ArrayList<>();
+        Gson gson = new Gson();
 
-        try{
-            Scanner fileScanner = new Scanner(new FileReader(filePath));
-            
-            while(fileScanner.hasNextLine()) {
-               String line = fileScanner.nextLine();
-               Scanner lineScanner = new Scanner(line);
-               lineScanner.useDelimiter(",");   
-               
-               String titel = lineScanner.next();
-               String targetLanguage = lineScanner.next();
-               String originalText = lineScanner.next();
-               String translatedText = lineScanner.next();
+        try (Scanner fileScanner = new Scanner(new FileReader(filePath))) {
 
-               entries.add(new ChatEntry(titel, targetLanguage, originalText, translatedText));
+            while (fileScanner.hasNextLine()) {
+                
+                String line = fileScanner.nextLine();
+
+                if (!line.isBlank()) {
+                    
+                    // convert the saved json line back into a ChatEntry object
+                    ChatEntry entry = gson.fromJson(line, ChatEntry.class);
+
+                    // add it to the List named entries 
+                    entries.add(entry);
+                }
             }
-        }catch(IOException e) {
+
+        } catch (IOException e) {
             e.printStackTrace();
         }
-
+        // returns the entries ArrayList
         return entries;
-    }
+    }   
 
 
 
