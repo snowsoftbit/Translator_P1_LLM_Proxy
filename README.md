@@ -24,10 +24,14 @@ Translator_P1_LLM_Proxy/
 ├── data/
 │   └── history.json
 ├── docs/
-│   └── uml
-│       ├── 260623_UML_User_Translates_Text_Sequence.drawio
+│   ├──uml
+│   │  ├── 260623_UML_User_Translates_Text_Sequence.drawio
+│   │  └── 260624_UML_Translator_Klassendiagram.drawio
+│   │
+│   └── media
 │       └── 260624_UML_Translator_Klassendiagram.drawio
 │
+│ 
 ├── src/
 │   └── main/
 │       ├── resources/
@@ -76,9 +80,4 @@ Translator_P1_LLM_Proxy/
 
 ## Bedienung und Anleitung für die Nutzung der App
 
-![Demo Gif of APP](XXXX)
-
-1.
-2.
-3.
-4.
+![Demo Gif of APP](docs/media/260625_demo.gif)
