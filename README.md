@@ -23,9 +23,14 @@ Datenbank gespeichert.
 Translator_P1_LLM_Proxy/
 ├── data/
 │   └── history.json
+├── assets/
+│   └── hwr_logo.png
 │
 ├── src/
 │   └── main/
+│       ├── resources/
+│       │    └── images/
+│       │        └── HWR_LOGO.png
 │       └── java/
 │           ├── app/
 │           │   └── Main.java

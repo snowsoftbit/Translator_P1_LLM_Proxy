@@ -1,10 +1,11 @@
 package ui;
-import javax.swing.JPanel;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
-import java.awt.Color;
+
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
     
 
@@ -18,7 +19,7 @@ public class HeaderPanel extends JPanel {
         titleLabel.setForeground(new Color(41, 128, 185));
         
         try {
-            ImageIcon originalIcon = new ImageIcon(getClass().getResource("/assets/hwr-logo.jpeg"));
+            ImageIcon originalIcon = new ImageIcon(getClass().getResource("/images/HWR_LOGO.png"));
             
             Image img = originalIcon.getImage();
             Image scaledImg = img.getScaledInstance(-1, 35, Image.SCALE_SMOOTH);
