@@ -1,12 +1,15 @@
 package ui;
 import javax.swing.JPanel;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.Color;
 
     
 
 public class HeaderPanel extends JPanel {
+    
     private JLabel titleLabel;
 
     public HeaderPanel() {
@@ -14,6 +17,18 @@ public class HeaderPanel extends JPanel {
         titleLabel.setFont(new Font("Arial", Font.PLAIN, 28));
         titleLabel.setForeground(new Color(41, 128, 185));
         
+        try {
+            ImageIcon originalIcon = new ImageIcon(getClass().getResource("/assets/hwr-logo.jpeg"));
+            
+            Image img = originalIcon.getImage();
+            Image scaledImg = img.getScaledInstance(-1, 35, Image.SCALE_SMOOTH);
+            ImageIcon scaledIcon = new ImageIcon(scaledImg);
+            
+            titleLabel.setIcon(scaledIcon);
+            titleLabel.setIconTextGap(15); 
+        } catch (Exception e) {
+            System.out.println("Logo konnte nicht geladen werden. Nutze reinen Text-Titel. \n" + e.getMessage());
+        }
         
         add(titleLabel);
     }
