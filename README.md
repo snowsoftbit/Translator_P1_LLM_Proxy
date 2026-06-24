@@ -23,8 +23,10 @@ Datenbank gespeichert.
 Translator_P1_LLM_Proxy/
 ├── data/
 │   └── history.json
-├── assets/
-│   └── hwr_logo.png
+├── docs/
+│   └── uml
+│       ├── 260623_UML_User_Translates_Text_Sequence.drawio
+│       └── 260624_UML_Translator_Klassendiagram.drawio
 │
 ├── src/
 │   └── main/
@@ -53,7 +55,7 @@ Translator_P1_LLM_Proxy/
 │               ├── HeaderPanel.java
 │               ├── HistoryPanel.java
 │               ├── MainFrame.java
-                ├── StatusPanel.java
+│               ├── StatusPanel.java
 │               └── TranslationPanel.java
 │
 ├── .gitignore
