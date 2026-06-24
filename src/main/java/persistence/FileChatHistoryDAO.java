@@ -20,12 +20,12 @@ public class FileChatHistoryDAO implements ChatHistoryDAO {
         this.filePath = filePath;
     }
 
-    //implemented from ChatHistoryDao. Saves a ChatEntry local as JSON file in directory data.
+    // implemented from ChatHistoryDao. Saves a ChatEntry local as JSON file in directory data.
     @Override
     public void saveEntry(ChatEntry entry) {
         Gson gson = new Gson();
-        
-        try(Writer writer = new FileWriter(filePath, true)) {
+
+        try (Writer writer = new FileWriter(filePath, true)) {
             gson.toJson(entry, writer);
             writer.write(System.lineSeparator());
         } catch (IOException e) {
@@ -33,9 +33,10 @@ public class FileChatHistoryDAO implements ChatHistoryDAO {
         }
     }
 
-    //implemented from ChatHistoryDao. Loads all ChatEntry objects from the local JSON file in directory data.
+    // implemented from ChatHistoryDao. Loads all ChatEntry objects from the local JSON file in
+    // directory data.
     // read each saved json line back into a ChatEntry object instead of splitting it manually
-    // previously this public method used a delimiter and treated it like a csv file 
+    // previously this public method used a delimiter and treated it like a csv file
     @Override
     public List<ChatEntry> loadEntries() {
         List<ChatEntry> entries = new ArrayList<>();
@@ -44,15 +45,15 @@ public class FileChatHistoryDAO implements ChatHistoryDAO {
         try (Scanner fileScanner = new Scanner(new FileReader(filePath))) {
 
             while (fileScanner.hasNextLine()) {
-                
+
                 String line = fileScanner.nextLine();
 
                 if (!line.isBlank()) {
-                    
+
                     // convert the saved json line back into a ChatEntry object
                     ChatEntry entry = gson.fromJson(line, ChatEntry.class);
 
-                    // add it to the List named entries 
+                    // add it to the List named entries
                     entries.add(entry);
                 }
             }
@@ -62,7 +63,7 @@ public class FileChatHistoryDAO implements ChatHistoryDAO {
         }
         // returns the entries ArrayList
         return entries;
-    }   
+    }
 
 
 
