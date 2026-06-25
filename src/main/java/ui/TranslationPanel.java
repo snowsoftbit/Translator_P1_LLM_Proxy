@@ -57,7 +57,11 @@ public class TranslationPanel extends JPanel {
 		JLabel sourceLabel = new JLabel("Quelltext");
 		sourceLabel.setFont(boldText);
 		topPanel.add(sourceLabel, BorderLayout.NORTH);
-		topPanel.add(new JScrollPane(inputArea), BorderLayout.CENTER);
+		// topPanel.add(new JScrollPane(inputArea), BorderLayout.CENTER);
+		JScrollPane inputScrollPane = new JScrollPane(inputArea);
+		inputScrollPane.setBorder(null);
+		topPanel.add(inputScrollPane, BorderLayout.CENTER);
+
 
 		JPanel controlPanel = new JPanel();
 
@@ -79,7 +83,7 @@ public class TranslationPanel extends JPanel {
 		newChatButton.setVisible(false);
 		controlPanel.add(characterCountLabel);
 
-		topPanel.add(controlPanel, BorderLayout.SOUTH);
+		// topPanel.add(controlPanel, BorderLayout.SOUTH);
 
 		JPanel bottomPanel = new JPanel(new BorderLayout());
 
@@ -91,12 +95,17 @@ public class TranslationPanel extends JPanel {
 		outputArea.setWrapStyleWord(true);
 		outputArea.setEditable(false);
 
-		bottomPanel.add(new JScrollPane(outputArea), BorderLayout.CENTER);
+		// bottomPanel.add(new JScrollPane(outputArea), BorderLayout.CENTER);
+		JScrollPane outputScrollPane = new JScrollPane(outputArea);
+		outputScrollPane.setBorder(null);
+		bottomPanel.add(outputScrollPane, BorderLayout.CENTER);
 
 		verticalSplitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, topPanel, bottomPanel);
 		verticalSplitPane.setResizeWeight(0.5);
+		verticalSplitPane.setDividerLocation(300);
 
 		add(verticalSplitPane, BorderLayout.CENTER);
+		add(controlPanel, BorderLayout.SOUTH);
 
 		newChatButton.addActionListener(new NewChatButtonListener());
 		translateButton.addActionListener(new TranslateButtonListener());

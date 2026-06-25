@@ -29,7 +29,7 @@ Translator_P1_LLM_Proxy/
 │   │  └── 260624_UML_Translator_Klassendiagram.drawio
 │   │
 │   └── media
-│       └── 260624_UML_Translator_Klassendiagram.drawio
+│       └── 260625_demo.gif
 │
 │ 
 ├── src/
