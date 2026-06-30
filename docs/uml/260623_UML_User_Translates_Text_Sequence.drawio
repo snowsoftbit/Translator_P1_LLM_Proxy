@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="Wt035qRkHRsakzkm1r-8" name="Seite-2">
-        <mxGraphModel dx="580" dy="290" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+        <mxGraphModel dx="476" dy="225" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -529,9 +529,9 @@
                 <mxCell id="vCkiH4uaQceU5kx2VRRw-116" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="1" vertex="1">
                     <mxGeometry x="1685" y="1456" width="10" height="78" as="geometry"/>
                 </mxCell>
-                <mxCell id="vCkiH4uaQceU5kx2VRRw-118" value="" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;exitX=0;exitY=1;exitDx=0;exitDy=-5;exitPerimeter=0;entryX=1;entryY=0.026;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="vCkiH4uaQceU5kx2VRRw-116" edge="1">
+                <mxCell id="vCkiH4uaQceU5kx2VRRw-118" value="" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;entryX=1;entryY=0.026;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="vCkiH4uaQceU5kx2VRRw-116" edge="1" source="N-betFSbpuTYfY5LgrPM-1">
                     <mxGeometry width="160" relative="1" as="geometry">
-                        <mxPoint x="1832" y="1455" as="sourcePoint"/>
+                        <mxPoint x="1830" y="1461" as="sourcePoint"/>
                         <mxPoint x="1941" y="1361" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>

@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram name="Seite-1" id="6Lja5rRqeR43UszmKvG7">
-        <mxGraphModel dx="4110" dy="2801" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+        <mxGraphModel dx="3840" dy="2647" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -266,12 +266,6 @@
                     <mxGeometry width="160" relative="1" as="geometry">
                         <mxPoint x="591" y="-974" as="sourcePoint"/>
                         <mxPoint x="751" y="-974" as="targetPoint"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="XmzAUjS4AAH027HiIq-t-333" value="Use" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;" parent="1" edge="1">
-                    <mxGeometry width="160" relative="1" as="geometry">
-                        <mxPoint x="505" y="-816" as="sourcePoint"/>
-                        <mxPoint x="665" y="-816" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="XmzAUjS4AAH027HiIq-t-335" value="Use" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;exitX=0.283;exitY=0.017;exitDx=0;exitDy=0;edgeStyle=orthogonalEdgeStyle;exitPerimeter=0;entryX=0.273;entryY=1.006;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="XmzAUjS4AAH027HiIq-t-252" target="kv2AWQ2FBXs1FW7d9jmJ-37" edge="1">
