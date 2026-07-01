@@ -1,14 +1,13 @@
 package app;
 
-import ui.MainFrame;
+import ui.TranslaitorFrame;
 
-public class Main {
+public class TranslaitorApp {
 
     public static void main(String[] args) {
 
-        new MainFrame();
+        new TranslaitorFrame();
     }
-
 
 }
 

@@ -140,12 +140,20 @@ public class TranslationPanel extends JPanel {
 			}
 			String targetLanguage = (String) targetLanguageComboBox.getSelectedItem();
 
-			ChatEntry chatEntry = new ChatEntry("Eintrag", targetLanguage, inputText, "");
+			ChatEntry chatEntry = new ChatEntry("", targetLanguage, inputText, "");
 			TranslationRequest request = new TranslationRequest(chatEntry);
 			TranslationResponse response = translationService.getTranslatedText(request);
 			String translatedText = response.getTranslatedText();
 			outputArea.setText(translatedText);
+			
+			String titleOfEntry;
+			if (inputText.length() > 15) {
+			    titleOfEntry = inputText.substring(0, 15);
+			} else {
+			    titleOfEntry = inputText;
+			}
 			chatEntry.setTranslatedText(translatedText);
+			chatEntry.setTitle(titleOfEntry);
 
 			chatHistoryDAO.saveEntry(chatEntry);
 			historyPanel.refreshChatHistory();

@@ -7,15 +7,15 @@ import javax.swing.JSplitPane;
 
 import model.ChatEntry;
 
-public class MainFrame extends JFrame {
+public class TranslaitorFrame extends JFrame {
 
     private JSplitPane horizontalSplitPane;
-    private HeaderPanel headerPanel = new HeaderPanel();
     private TranslationPanel translationPanel;
     private HistoryPanel historyPanel;
+    private HeaderPanel headerPanel = new HeaderPanel();
     private StatusPanel statusPanel = new StatusPanel();
 
-    public MainFrame() {
+    public TranslaitorFrame() {
         super("TranslAItor");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());

@@ -93,7 +93,7 @@ public class ChatEntry {
     
     @Override
     public String toString() {
-    	return "Eintrag " + "(" + this.timestamp + ")";
+    	return this.title + "..." + " (" + this.timestamp + ")";
     }
 }
 

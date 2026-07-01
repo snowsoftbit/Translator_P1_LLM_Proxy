@@ -24,14 +24,14 @@ public class HistoryPanel extends JPanel {
 	private final DefaultListModel<ChatEntry> listModel = new DefaultListModel<>();
 	private final JList<ChatEntry> historyList = new JList<>(listModel);
 	private final ChatHistoryDAO chatHistoryDAO = new FileChatHistoryDAO("data/history.json");
-	private final MainFrame mainFrame;
+	private final TranslaitorFrame translaitorFrame;
 	private final int MAX_ENTRIES_TO_SHOW = 10;
 
-	public HistoryPanel(MainFrame mainFrame) {
+	public HistoryPanel(TranslaitorFrame translaitorFrame) {
 
-		this.mainFrame = mainFrame;
+		this.translaitorFrame = translaitorFrame;
 		setLayout(new BorderLayout());
-		setPreferredSize(new Dimension(250, 600));
+		setPreferredSize(new Dimension(300, 600));
 
 		historyList.setFont(new Font("Arial", Font.PLAIN, 16));
 		historyList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -51,16 +51,15 @@ public class HistoryPanel extends JPanel {
 		List<ChatEntry> entries = chatHistoryDAO.loadEntries();
 		int count = 0;
 
-		if (entries != null) {
-			entries.sort(new ChatEntryComparator());
+		entries.sort(new ChatEntryComparator());
 
-			for (ChatEntry entry : entries) {
-				if (count >= MAX_ENTRIES_TO_SHOW) {
-					break;
-				}
-				listModel.addElement(entry);
-				count++;
+		for (ChatEntry entry : entries) {
+			if (count >= MAX_ENTRIES_TO_SHOW) {
+				break;
 			}
+			listModel.addElement(entry);
+			count++;
+
 		}
 
 	}
@@ -71,9 +70,9 @@ public class HistoryPanel extends JPanel {
 			if (!e.getValueIsAdjusting()) {
 				ChatEntry selectedChatEntry = historyList.getSelectedValue();
 
-				if (selectedChatEntry != null && mainFrame != null) {
+				if (selectedChatEntry != null && translaitorFrame != null) {
 
-					mainFrame.selectChatFromHistory(selectedChatEntry);
+					translaitorFrame.selectChatFromHistory(selectedChatEntry);
 				}
 			}
 		}
