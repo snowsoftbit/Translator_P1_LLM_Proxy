@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
@@ -24,12 +25,12 @@ import persistence.ChatHistoryDAO;
 import persistence.FileChatHistoryDAO;
 import service.TranslationService;
 
-
 public class TranslationPanel extends JPanel {
 
 	private final JSplitPane verticalSplitPane;
 	private final ChatHistoryDAO chatHistoryDAO = new FileChatHistoryDAO("data/history.json");
 	private final HistoryPanel historyPanel;
+	private final TranslationService translationService = new TranslationService();
 	private final JTextArea inputArea = new JTextArea();
 	private final JTextArea outputArea = new JTextArea();
 	private final JButton translateButton = new JButton("Übersetzen");
@@ -57,11 +58,9 @@ public class TranslationPanel extends JPanel {
 		JLabel sourceLabel = new JLabel("Quelltext");
 		sourceLabel.setFont(boldText);
 		topPanel.add(sourceLabel, BorderLayout.NORTH);
-		// topPanel.add(new JScrollPane(inputArea), BorderLayout.CENTER);
 		JScrollPane inputScrollPane = new JScrollPane(inputArea);
 		inputScrollPane.setBorder(null);
 		topPanel.add(inputScrollPane, BorderLayout.CENTER);
-
 
 		JPanel controlPanel = new JPanel();
 
@@ -69,7 +68,6 @@ public class TranslationPanel extends JPanel {
 		targetLanguageComboBox.setFont(boldText);
 		selectTargetLanguageLabel.setFont(boldText);
 		translateButton.setPreferredSize(new Dimension(150, 40));
-		translateButton.setBackground(new Color(220, 240, 240));
 		newChatButton.setPreferredSize(new Dimension(150, 40));
 		translateButton.setFont(boldText);
 		newChatButton.setFont(boldText);
@@ -83,8 +81,6 @@ public class TranslationPanel extends JPanel {
 		newChatButton.setVisible(false);
 		controlPanel.add(characterCountLabel);
 
-		// topPanel.add(controlPanel, BorderLayout.SOUTH);
-
 		JPanel bottomPanel = new JPanel(new BorderLayout());
 
 		JLabel translationLabel = new JLabel("Übersetzung");
@@ -95,7 +91,6 @@ public class TranslationPanel extends JPanel {
 		outputArea.setWrapStyleWord(true);
 		outputArea.setEditable(false);
 
-		// bottomPanel.add(new JScrollPane(outputArea), BorderLayout.CENTER);
 		JScrollPane outputScrollPane = new JScrollPane(outputArea);
 		outputScrollPane.setBorder(null);
 		bottomPanel.add(outputScrollPane, BorderLayout.CENTER);
@@ -112,7 +107,7 @@ public class TranslationPanel extends JPanel {
 		inputArea.getDocument().addDocumentListener(new CharCounterListener());
 	}
 
-	// Loading selected chat-entry in input and output field
+	// Loading selected chat-entry in input and output textfield
 	public void loadHistoryChat(String inputText, String translatedText) {
 		inputArea.setText(inputText);
 		outputArea.setText(translatedText);
@@ -123,10 +118,9 @@ public class TranslationPanel extends JPanel {
 	}
 
 	private void addLanguagesToComboBox() {
-		String[] languages = {"Englisch", "Chinesisch", "Hindi", "Spanisch", "Französisch",
-				"Arabisch", "Bengalisch", "Portugiesisch", "Russisch", "Urdu", "Indonesisch",
-				"Deutsch", "Japanisch", "Pidgin", "Marathi", "Telugu", "Türkisch", "Tamil",
-				"Kantonesisch", "Koreanisch", "Vietnamesisch"};
+		String[] languages = { "Englisch", "Chinesisch", "Hindi", "Spanisch", "Französisch", "Arabisch", "Bengalisch",
+				"Portugiesisch", "Russisch", "Urdu", "Indonesisch", "Deutsch", "Japanisch", "Pidgin", "Marathi",
+				"Telugu", "Türkisch", "Tamil", "Kantonesisch", "Koreanisch", "Vietnamesisch" };
 
 		for (String language : languages) {
 			targetLanguageComboBox.addItem(language);
@@ -139,27 +133,27 @@ public class TranslationPanel extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			String inputText = inputArea.getText();
+			if (inputText.isBlank()) {
+				JOptionPane.showMessageDialog(null, "Bitte einen Text eingeben.", "Hinweis",
+						JOptionPane.INFORMATION_MESSAGE);
+				return;
+			}
 			String targetLanguage = (String) targetLanguageComboBox.getSelectedItem();
 
 			ChatEntry chatEntry = new ChatEntry("Eintrag", targetLanguage, inputText, "");
 			TranslationRequest request = new TranslationRequest(chatEntry);
-
-			TranslationService translationService = new TranslationService();
 			TranslationResponse response = translationService.getTranslatedText(request);
 			String translatedText = response.getTranslatedText();
 			outputArea.setText(translatedText);
 			chatEntry.setTranslatedText(translatedText);
 
-			try {
-				chatHistoryDAO.saveEntry(chatEntry);
-				historyPanel.refreshChatHistory();
-			} catch (Exception ex) {
-				System.out.println("Fehler beim Speichern des Chat-Eintrags");
-			}
+			chatHistoryDAO.saveEntry(chatEntry);
+			historyPanel.refreshChatHistory();
 		}
 	}
 
-	// "Neuer Chat" Button Listener: Clear input and output area and start a new translation
+	// "Neuer Chat" Button Listener: Clear input and output area and start a new
+	// translation
 	private class NewChatButtonListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -177,7 +171,8 @@ public class TranslationPanel extends JPanel {
 		}
 	}
 
-	// Character Counter Listener: Counts character, if more than 2000, button is disabled
+	// Character Counter Listener: Counts character, if more than 2000, button is
+	// disabled
 	private class CharCounterListener implements DocumentListener {
 		private void updateCount() {
 			int length = inputArea.getText().length();
@@ -201,16 +196,18 @@ public class TranslationPanel extends JPanel {
 		}
 
 		@Override
-		public void changedUpdate(DocumentEvent e) {}
+		public void changedUpdate(DocumentEvent e) {
+		}
 	}
 
 }
 
 /*
- * Responsibility: It must have: - input text area - language target selection dropdown menu -
- * translate or enter button - reacts to the user's button clicks - creates a ChatEntry object -
- * creates a TranslationRequest - receives a TranslationResponse - displays the translated text as a
- * chat bubble - creates and saves a ChatEntry object after a successful translation - uses
+ * Responsibility: It must have: - input text area - language target selection
+ * dropdown menu - translate or enter button - reacts to the user's button
+ * clicks - creates a ChatEntry object - creates a TranslationRequest - receives
+ * a TranslationResponse - displays the translated text as a chat bubble -
+ * creates and saves a ChatEntry object after a successful translation - uses
  * ChatHistoryDAO - updates the HistoryPanel after saving a new entry
  *
  * Interactions:
@@ -221,8 +218,9 @@ public class TranslationPanel extends JPanel {
  * 
  * - model.ChatEntry.java: creates history entries after successful translations
  * 
- * - persistence.ChatHistoryDAO.java: calls DAO methods to save new entries to the local history
+ * - persistence.ChatHistoryDAO.java: calls DAO methods to save new entries to
+ * the local history
  * 
- * - service.TranslationService.java: sends the translation request to the service and receives the
- * translation response
+ * - service.TranslationService.java: sends the translation request to the
+ * service and receives the translation response
  */
