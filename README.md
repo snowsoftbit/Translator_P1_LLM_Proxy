@@ -84,7 +84,7 @@ Translator_P1_LLM_Proxy/
 2. Wähle deine Zielsprache 
 3. Clicke auf „Übersetzen“ 
 4. Lese deine fertige Übersetzung im Ausgabefeld 
-5. Der Eintrag bzw. wird automatisch im Verlauf gespeichert
+5. Der Eintrag wird automatisch im Verlauf gespeichert
 6. Unter Verlauf finden Sie frühere Übersetzungen
 7. Der Button „Neuer Chat“ leert die Eingabe und Ausgabe, um eine Neue Übersetzung zu tätigen
 
