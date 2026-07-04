@@ -62,6 +62,24 @@ public class TranslationPanel extends JPanel {
 		inputScrollPane.setBorder(null);
 		topPanel.add(inputScrollPane, BorderLayout.CENTER);
 
+		JPanel bottomPanel = new JPanel(new BorderLayout());
+
+		JLabel translationLabel = new JLabel("Übersetzung");
+		translationLabel.setFont(boldText);
+		bottomPanel.add(translationLabel, BorderLayout.NORTH);
+		outputArea.setFont(biggerText);
+		outputArea.setLineWrap(true);
+		outputArea.setWrapStyleWord(true);
+		outputArea.setEditable(false);
+
+		JScrollPane outputScrollPane = new JScrollPane(outputArea);
+		outputScrollPane.setBorder(null);
+		bottomPanel.add(outputScrollPane, BorderLayout.CENTER);
+
+		verticalSplitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, topPanel, bottomPanel);
+		verticalSplitPane.setResizeWeight(0.5);
+		verticalSplitPane.setDividerLocation(300);
+		
 		JPanel controlPanel = new JPanel();
 
 		targetLanguageComboBox.setPreferredSize(new Dimension(150, 40));
@@ -80,24 +98,6 @@ public class TranslationPanel extends JPanel {
 		controlPanel.add(newChatButton);
 		newChatButton.setVisible(false);
 		controlPanel.add(characterCountLabel);
-
-		JPanel bottomPanel = new JPanel(new BorderLayout());
-
-		JLabel translationLabel = new JLabel("Übersetzung");
-		translationLabel.setFont(boldText);
-		bottomPanel.add(translationLabel, BorderLayout.NORTH);
-		outputArea.setFont(biggerText);
-		outputArea.setLineWrap(true);
-		outputArea.setWrapStyleWord(true);
-		outputArea.setEditable(false);
-
-		JScrollPane outputScrollPane = new JScrollPane(outputArea);
-		outputScrollPane.setBorder(null);
-		bottomPanel.add(outputScrollPane, BorderLayout.CENTER);
-
-		verticalSplitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, topPanel, bottomPanel);
-		verticalSplitPane.setResizeWeight(0.5);
-		verticalSplitPane.setDividerLocation(300);
 
 		add(verticalSplitPane, BorderLayout.CENTER);
 		add(controlPanel, BorderLayout.SOUTH);
