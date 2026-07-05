@@ -80,14 +80,10 @@ Translator_P1_LLM_Proxy/
 
 ## Bedienung und Anleitung für die Nutzung der App
 
-1. Schreibe ein Text in das Eingabefeld 
-2. Wähle deine Zielsprache 
-3. Clicke auf „Übersetzen“ 
-4. Lese deine fertige Übersetzung im Ausgabefeld 
-5. Der Eintrag wird automatisch im Verlauf gespeichert
-6. Unter Verlauf finden Sie frühere Übersetzungen
-7. Der Button „Neuer Chat“ leert die Eingabe und Ausgabe, um eine Neue Übersetzung zu tätigen
-
-### Hint: Die Statusanzeige unten zeigt, ob API-Schlüssel vorhanden sind
+- 1: Start the App 
 
 ![Demo Gif of APP](docs/media/260625_demo.gif)
+
+## Technische Voraussetzungen
+
+Unsere App benötigt eine lauffähige Java-Umgebung (Java 21), Internet, um sich mit einem LLM zu verbinden, die JAR Datei und eine gültige .env Konfiguration.
