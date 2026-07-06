@@ -94,7 +94,7 @@ public class LlmProxy implements LlmClient {
                 + "Do not think step by step. " + "Do not output reasoning. "
                 + "Do not explain your reasoning. " + "Do not use Markdown. "
                 + "Translate the user's text into the desired language. "
-                + "Also provide a short summary. " + "Return only this format:\n"
+                + "Also provide a summary. " + "Return only this format:\n"
                 + "Translation: <translated text>\n" + "Summary: <one or two short sentences>");
 
         JsonObject userMessage = new JsonObject();
