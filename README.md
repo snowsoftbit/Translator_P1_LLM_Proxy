@@ -70,17 +70,25 @@ Translator_P1_LLM_Proxy/
 
 ## Team Mitglieder und Rollen
 
-- Zuständig für Fenster und Grundlayout:[@leonjonasilg-design](https://github.com/leonjonasilg-design)
+- Zuständig für: Fenster und Grundlayout:[@leonjonasilg-design](https://github.com/leonjonasilg-design)
 
-- Zuständig für Service, API und Integration: [@snowsoftbit](https://github.com/snowsoftbit)
+- Zuständig für: Service, API und Integration: [@snowsoftbit](https://github.com/snowsoftbit)
 
-- Zuständig für Daten und JSON-Speicherung:[@LeanderGuelland](https://github.com/Burak92)
+- Zuständig für: Daten und JSON-Speicherung:[@LeanderGuelland](https://github.com/Burak92)
 
-- Zuständig für Übersetzungsbereich:[@Burak92](https://github.com/LeanderGuelland)
+- Zuständig für: Übersetzungsbereich:[@Burak92](https://github.com/LeanderGuelland)
 
 ## Bedienung und Anleitung für die Nutzung der App
 
-- 1: Start the App 
+1. Schreibe ein Text in das Eingabefeld
+2. Wähle deine Zielsprache
+3. Clicke auf „Übersetzen“
+4. Lese deine fertige Übersetzung im Ausgabefeld
+5. Der Eintrag wird automatisch im Verlauf gespeichert
+6. Unter Verlauf finden Sie frühere Übersetzungen
+7. Der Button „Neuer Chat“ leert die Eingabe und Ausgabe, um eine Neue Übersetzung zu tätigen
+
+### Hint: Die Statusanzeige unten zeigt, ob API-Schlüssel vorhanden sind
 
 ![Demo Gif of APP](docs/media/260625_demo.gif)
 
