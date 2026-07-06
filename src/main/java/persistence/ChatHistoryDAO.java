@@ -1,16 +1,3 @@
-package persistence;
-
-import java.util.List;
-
-import model.ChatEntry;
-
-public interface ChatHistoryDAO {
-    void saveEntry(ChatEntry entry);
-
-    List<ChatEntry> loadEntries();
-}
-
-
 /*
  * Responsibility: This interface will define the data access operations for the translation
  * history. It acts as the Data Access Object interface for the history storage. It separates
@@ -29,5 +16,14 @@ public interface ChatHistoryDAO {
  * 
  * - persistence.FileChatHistoryDAO.java: implements the interface methods
  */
+package persistence;
 
+import java.util.List;
 
+import model.ChatEntry;
+
+public interface ChatHistoryDAO {
+    void saveEntry(ChatEntry entry);
+
+    List<ChatEntry> loadEntries();
+}

@@ -1,3 +1,18 @@
+/*
+ * Responsibility: This class will be the center piece of our app. It will handle the communication
+ * with the LLM model. It will receive the raw and unfiltered response from the model as a chat
+ * entry and build the API request to the LLM. All the API specific code will be here. there is no
+ * back and forth communication. only reqeust and one answer.
+ *
+ * Interactions:
+ * 
+ * - service.TranslationService.java: receives calls from the TranslationService class and returns
+ * the LLM results back to it
+ * 
+ * - The external LLM: in this case the Qwen model
+ * 
+ * - .env: reads the API key, base URL and model name
+ */
 package service;
 
 import java.net.URI;
@@ -127,7 +142,7 @@ public class LlmProxy implements LlmClient {
                 .header("Content-Type", "application/json")
                 .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(body)))
 
-                .build ();
+                .build();
 
         return request;
 
@@ -207,21 +222,3 @@ public class LlmProxy implements LlmClient {
 
 
 }
-
-
-
-/*
- * Responsibility: This class will be the center piece of our app. It will handle the communication
- * with the LLM model. It will receive the raw and unfiltered response from the model as a chat
- * entry and build the API request to the LLM. All the API specific code will be here. there is no
- * back and forth communication. only reqeust and one answer.
- *
- * Interactions:
- * 
- * - service.TranslationService.java: receives calls from the TranslationService class and returns
- * the LLM results back to it
- * 
- * - The external LLM: in this case the Qwen model
- * 
- * - .env: reads the API key, base URL and model name
- */

@@ -1,24 +1,3 @@
-package model;
-
-public class TranslationRequest {
-
-    private final String TARGET_LANGUAGE;
-    private final String ORIGINAL_TEXT;
-
-    public TranslationRequest(ChatEntry chatEntry) {
-        this.TARGET_LANGUAGE = chatEntry.getTargetLanguage();
-        this.ORIGINAL_TEXT = chatEntry.getOriginalText();
-    }
-    public String getChatEntryText() {
-        String chatEntryText =
-                "Translate the following text to " + TARGET_LANGUAGE + ": " + ORIGINAL_TEXT;
-
-        return chatEntryText;
-    }
-
-
-}
-
 /*
  * Responsibility: This class will store the user input data needed for the translation: - the
  * original text - the selected target language
@@ -30,3 +9,24 @@ public class TranslationRequest {
  * - service.TranslationService.java: input data is passed to the service to start the translation
  * process
  */
+package model;
+
+public class TranslationRequest {
+
+    private final String TARGET_LANGUAGE;
+    private final String ORIGINAL_TEXT;
+
+    public TranslationRequest(ChatEntry chatEntry) {
+        this.TARGET_LANGUAGE = chatEntry.getTargetLanguage();
+        this.ORIGINAL_TEXT = chatEntry.getOriginalText();
+    }
+
+    public String getChatEntryText() {
+        String chatEntryText =
+                "Translate the following text to " + TARGET_LANGUAGE + ": " + ORIGINAL_TEXT;
+
+        return chatEntryText;
+    }
+
+
+}

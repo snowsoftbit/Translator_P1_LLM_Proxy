@@ -1,7 +1,27 @@
+/*
+ * Responsibility: It must have: - input text area - language target selection dropdown menu -
+ * translate or enter button - reacts to the user's button clicks - creates a ChatEntry object -
+ * creates a TranslationRequest - receives a TranslationResponse - displays the translated text as a
+ * chat bubble - creates and saves a ChatEntry object after a successful translation - uses
+ * ChatHistoryDAO - updates the HistoryPanel after saving a new entry
+ *
+ * Interactions:
+ * 
+ * - model.TranslationRequest.java: creates request objects from GUI input
+ * 
+ * - model.TranslationResponse.java: receives and reads the response objects
+ * 
+ * - model.ChatEntry.java: creates history entries after successful translations
+ * 
+ * - persistence.ChatHistoryDAO.java: calls DAO methods to save new entries to the local history
+ * 
+ * - service.TranslationService.java: sends the translation request to the service and receives the
+ * translation response
+ */
+
 package ui;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -79,7 +99,7 @@ public class TranslationPanel extends JPanel {
 		verticalSplitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, topPanel, bottomPanel);
 		verticalSplitPane.setResizeWeight(0.5);
 		verticalSplitPane.setDividerLocation(300);
-		
+
 		JPanel controlPanel = new JPanel();
 
 		targetLanguageComboBox.setPreferredSize(new Dimension(150, 40));
@@ -118,9 +138,10 @@ public class TranslationPanel extends JPanel {
 	}
 
 	private void addLanguagesToComboBox() {
-		String[] languages = { "Englisch", "Chinesisch", "Hindi", "Spanisch", "Französisch", "Arabisch", "Bengalisch",
-				"Portugiesisch", "Russisch", "Urdu", "Indonesisch", "Deutsch", "Japanisch", "Pidgin", "Marathi",
-				"Telugu", "Türkisch", "Tamil", "Kantonesisch", "Koreanisch", "Vietnamesisch" };
+		String[] languages = {"Englisch", "Chinesisch", "Hindi", "Spanisch", "Französisch",
+				"Arabisch", "Bengalisch", "Portugiesisch", "Russisch", "Urdu", "Indonesisch",
+				"Deutsch", "Japanisch", "Pidgin", "Marathi", "Telugu", "Türkisch", "Tamil",
+				"Kantonesisch", "Koreanisch", "Vietnamesisch"};
 
 		for (String language : languages) {
 			targetLanguageComboBox.addItem(language);
@@ -145,12 +166,12 @@ public class TranslationPanel extends JPanel {
 			TranslationResponse response = translationService.getTranslatedText(request);
 			String translatedText = response.getTranslatedText();
 			outputArea.setText(translatedText);
-			
+
 			String titleOfEntry;
 			if (inputText.length() > 15) {
-			    titleOfEntry = inputText.substring(0, 15);
+				titleOfEntry = inputText.substring(0, 15);
 			} else {
-			    titleOfEntry = inputText;
+				titleOfEntry = inputText;
 			}
 			chatEntry.setTranslatedText(translatedText);
 			chatEntry.setTitle(titleOfEntry);
@@ -204,31 +225,7 @@ public class TranslationPanel extends JPanel {
 		}
 
 		@Override
-		public void changedUpdate(DocumentEvent e) {
-		}
+		public void changedUpdate(DocumentEvent e) {}
 	}
 
 }
-
-/*
- * Responsibility: It must have: - input text area - language target selection
- * dropdown menu - translate or enter button - reacts to the user's button
- * clicks - creates a ChatEntry object - creates a TranslationRequest - receives
- * a TranslationResponse - displays the translated text as a chat bubble -
- * creates and saves a ChatEntry object after a successful translation - uses
- * ChatHistoryDAO - updates the HistoryPanel after saving a new entry
- *
- * Interactions:
- * 
- * - model.TranslationRequest.java: creates request objects from GUI input
- * 
- * - model.TranslationResponse.java: receives and reads the response objects
- * 
- * - model.ChatEntry.java: creates history entries after successful translations
- * 
- * - persistence.ChatHistoryDAO.java: calls DAO methods to save new entries to
- * the local history
- * 
- * - service.TranslationService.java: sends the translation request to the
- * service and receives the translation response
- */

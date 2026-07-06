@@ -1,3 +1,22 @@
+
+/*
+ * Responsibility: Stores the data of one completed request with: - the original text - the target
+ * language the text should be translated into - the date and time of the chat - the title of the
+ * chat - the translated text
+ *
+ * So it has these properties: - unique id - title - source language - target language - original
+ * text - translated text - time and date stamp
+ *
+ * Interactions:
+ * 
+ * - persistence.FileChatHistoryDAO.java: saved to and loaded from the history file
+ * 
+ * - persistence.ChatHistoryDAO.java: uses the interface methods
+ * 
+ * - ui.HistoryPanel.java: displayed in the history list
+ * 
+ * - ui.TranslationPanel.java: can be used to load up a previous translation into the GUI
+ */
 package model;
 
 import java.io.File;
@@ -16,7 +35,7 @@ public class ChatEntry {
 
     public ChatEntry(String title, String targetLanguage, String originalText,
             String translatedText) {
-        
+
         setCurrentTimestamp();
 
         this.title = title;
@@ -36,9 +55,9 @@ public class ChatEntry {
 
         int temp_id = (int) (Math.random() * 1000000);
 
-        if(directoryListing != null){
-            for(File f : directoryListing){
-                if(f.getName().equals(Integer.toString(temp_id) + ".json")){
+        if (directoryListing != null) {
+            for (File f : directoryListing) {
+                if (f.getName().equals(Integer.toString(temp_id) + ".json")) {
                     temp_id = (int) (Math.random() * 1000000);
                 }
             }
@@ -90,28 +109,9 @@ public class ChatEntry {
     public void setTranslatedText(String translatedText) {
         this.translatedText = translatedText;
     }
-    
+
     @Override
     public String toString() {
-    	return this.title + "..." + " (" + this.timestamp + ")";
+        return this.title + "..." + " (" + this.timestamp + ")";
     }
 }
-
-/*
- * Responsibility: Stores the data of one completed request with: - the original text - the target
- * language the text should be translated into - the date and time of the chat - the title of the
- * chat - the translated text
- *
- * So it has these properties: - unique id - title - source language - target language - original
- * text - translated text - time and date stamp
- *
- * Interactions:
- * 
- * - persistence.FileChatHistoryDAO.java: saved to and loaded from the history file
- * 
- * - persistence.ChatHistoryDAO.java: uses the interface methods
- * 
- * - ui.HistoryPanel.java: displayed in the history list
- * 
- * - ui.TranslationPanel.java: can be used to load up a previous translation into the GUI
- */
