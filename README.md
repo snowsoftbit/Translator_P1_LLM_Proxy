@@ -29,7 +29,7 @@ Translator_P1_LLM_Proxy/
 │   │  └── 260624_UML_Translator_Klassendiagram.drawio
 │   │
 │   └── media
-│       └── 260625_demo.gif
+│       └── 260708_demo.gif
 │
 │ 
 ├── src/
@@ -90,7 +90,7 @@ Translator_P1_LLM_Proxy/
 
 ### Hint: Die Statusanzeige unten zeigt, ob API-Schlüssel vorhanden sind
 
-![Demo Gif of APP](docs/media/260625_demo.gif)
+![Demo Gif of APP](docs/media/260708_demo.gif)
 
 ## Technische Voraussetzungen
 
