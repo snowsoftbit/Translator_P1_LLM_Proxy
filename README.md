@@ -39,7 +39,7 @@ Translator_P1_LLM_Proxy/
 │       │        └── HWR_LOGO.png
 │       └── java/
 │           ├── app/
-│           │   └── Main.java
+│           │   └── TranslaitorApp.java
 │           │
 │           ├── model/
 │           │   ├── ChatEntry.java
@@ -58,7 +58,7 @@ Translator_P1_LLM_Proxy/
 │           └── ui/
 │               ├── HeaderPanel.java
 │               ├── HistoryPanel.java
-│               ├── MainFrame.java
+│               ├── TranslaitorFrame.java
 │               ├── StatusPanel.java
 │               └── TranslationPanel.java
 │
