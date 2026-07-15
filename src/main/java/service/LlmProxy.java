@@ -30,6 +30,13 @@ import io.github.cdimascio.dotenv.Dotenv;
 
 public class LlmProxy implements LlmClient {
 
+    private static final String SYSTEM_PROMPT = "You are a professional translation assistant. "
+            + "Translate the user's text accurately into the requested language while preserving "
+            + "meaning, tone, and intent. Keep names, places, and technical terms intact unless "
+            + "they need a natural target-language equivalent. Do not add explanations, reasoning, "
+            + "or Markdown. Return exactly the following format with no extra text:\n"
+            + "Translation: <translated text>\n" + "Summary: <one or two short sentences>";
+
     private final String apiKey;
     private final String baseUrl;
     private final String modelName;
@@ -90,12 +97,7 @@ public class LlmProxy implements LlmClient {
 
         JsonObject systemMessage = new JsonObject();
         systemMessage.addProperty("role", "system");
-        systemMessage.addProperty("content", "You are a very good translation assistant. "
-                + "Do not think step by step. " + "Do not output reasoning. "
-                + "Do not explain your reasoning. " + "Do not use Markdown. "
-                + "Translate the user's text into the desired language. "
-                + "Also provide a summary. " + "Return only this format:\n"
-                + "Translation: <translated text>\n" + "Summary: <one or two short sentences>");
+        systemMessage.addProperty("content", SYSTEM_PROMPT);
 
         JsonObject userMessage = new JsonObject();
         userMessage.addProperty("role", "user");
